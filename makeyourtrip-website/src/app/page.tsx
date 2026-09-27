@@ -7,7 +7,6 @@ import Introduction from '@/components/sections/Introduction'
 import Services from '@/components/sections/Services'
 import Destinations from '@/components/sections/Destinations'
 import HowItWorks from '@/components/sections/HowItWorks'
-import EditorialCTA from '@/components/sections/EditorialCTA'
 import WhyMYT from '@/components/sections/WhyMYT'
 import Testimonials from '@/components/sections/Testimonials'
 import BottomCTA from '@/components/sections/BottomCTA'
@@ -35,7 +34,6 @@ export default function HomePage() {
         <Services />
         <Destinations />
         <HowItWorks />
-        <EditorialCTA />
         <WhyMYT />
         <Testimonials />
         <BottomCTA />
