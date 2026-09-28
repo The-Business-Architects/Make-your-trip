@@ -1,6 +1,5 @@
-import type { NextConfig } from 'next'
-
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   output: 'export',           // Static HTML export for Hostinger shared hosting
   trailingSlash: true,        // Ensures /about/ folder structure for clean URLs
   images: {
