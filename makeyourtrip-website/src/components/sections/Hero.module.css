@@ -204,7 +204,8 @@
 .travelerPanel {
   position: absolute;
   top: calc(100% + var(--space-2));
-  left: 0;
+  right: 0;
+  left: auto;
   width: 100%;
   min-width: 250px;
   background: white;
@@ -323,10 +324,6 @@
     padding: 0.4rem 0.5rem;
   }
 
-  .travelerPanel {
-    left: auto;
-    right: 0;
-  }
 
   .inputGroup input[type="text"] {
     font-size: var(--text-base);
