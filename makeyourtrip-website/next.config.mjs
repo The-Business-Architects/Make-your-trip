@@ -7,6 +7,10 @@ const nextConfig = {
   },
   // Clean production build
   reactStrictMode: true,
+  devIndicators: {
+    appIsrStatus: false, // Disables the 'N' App Router indicator
+    buildActivity: false, // Disables the build activity triangle
+  },
 }
 
 export default nextConfig
