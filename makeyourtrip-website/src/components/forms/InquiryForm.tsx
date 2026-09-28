@@ -45,7 +45,7 @@ const JOURNEY_OPTIONS: { value: JourneyType; label: string }[] = [
   { value: 'multi-destination', label: 'Multi-Destination' },
 ]
 
-const CLASS_OPTIONS = [
+const CLASS_OPTIONS: { value: 'economy' | 'premium-economy' | 'business' | 'first'; label: string }[] = [
   { value: 'economy',         label: 'Economy' },
   { value: 'premium-economy', label: 'Premium Economy' },
   { value: 'business',        label: 'Business' },
