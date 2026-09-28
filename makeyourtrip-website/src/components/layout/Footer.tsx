@@ -121,11 +121,18 @@ export default function Footer() {
                 >info@makeyourtripinc.com</a>
               </div>
               <div className={styles.contactItem}>
-                <span className={styles.contactLabel}>Phone / WhatsApp</span>
+                <span className={styles.contactLabel}>Phone (India)</span>
                 <a
-                  href="tel:+18000000000"
+                  href="tel:+919528203267"
                   className={styles.contactValue}
-                >+1 (800) 000-0000</a>
+                >+91 9528 203 267</a>
+              </div>
+              <div className={styles.contactItem}>
+                <span className={styles.contactLabel}>Phone (Intl)</span>
+                <a
+                  href="tel:+16507290130"
+                  className={styles.contactValue}
+                >+1 (650) 729-0130</a>
               </div>
               <div className={styles.contactItem}>
                 <span className={styles.contactLabel}>Serving</span>
