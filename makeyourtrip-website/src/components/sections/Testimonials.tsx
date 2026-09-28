@@ -1,7 +1,9 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import { useReveal, useStaggerReveal } from '@/lib/useReveal'
 import styles from './Testimonials.module.css'
+import ReviewForm from '../forms/ReviewForm'
 
 const testimonials = [
   {
@@ -30,6 +32,38 @@ const testimonials = [
 export default function Testimonials() {
   const headRef = useReveal<HTMLDivElement>()
   const gridRef = useStaggerReveal<HTMLDivElement>(0.1, 130)
+  const [showReviewForm, setShowReviewForm] = useState(false)
+  const [activeIndex, setActiveIndex] = useState(0)
+
+  useEffect(() => {
+    const slider = gridRef.current
+    if (!slider) return
+
+    const interval = setInterval(() => {
+      if (window.innerWidth > 900) return // Only run on mobile
+      
+      const maxScroll = slider.scrollWidth - slider.clientWidth
+      if (maxScroll <= 0) return
+      
+      let nextScroll = slider.scrollLeft + slider.clientWidth
+      if (nextScroll > maxScroll + 10) { // Add small buffer for rounding
+        nextScroll = 0
+      }
+      
+      slider.scrollTo({
+        left: nextScroll,
+        behavior: 'smooth'
+      })
+    }, 3500)
+
+    return () => clearInterval(interval)
+  }, [gridRef])
+
+  const handleScroll = () => {
+    if (!gridRef.current) return
+    const index = Math.round(gridRef.current.scrollLeft / gridRef.current.clientWidth)
+    setActiveIndex(index)
+  }
 
   return (
     <section
@@ -38,17 +72,18 @@ export default function Testimonials() {
       aria-labelledby="testimonials-heading"
     >
       <div className="container">
-        <div className={`text-center reveal-on-scroll ${styles.head}`} ref={headRef}>
+        <div className={`reveal-left ${styles.head}`} ref={headRef}>
           <p className="eyebrow">Traveler Stories</p>
+          <hr className="divider" />
           <h2 className="section-title" id="testimonials-heading">
-            What Our Travelers Say
+            What Our <em>Travelers Say.</em>
           </h2>
           <p className={`section-subtitle ${styles.subtitle}`}>
             Placeholder testimonials — to be updated with verified client stories.
           </p>
         </div>
 
-        <div className={styles.grid} ref={gridRef}>
+        <div className={styles.grid} ref={gridRef} onScroll={handleScroll}>
           {testimonials.map(({ id, quote, name, origin, destination }) => (
             <figure key={id} id={id} className={`stagger-item ${styles.card}`}>
               <div className={styles.quoteIcon} aria-hidden="true">
@@ -66,6 +101,39 @@ export default function Testimonials() {
             </figure>
           ))}
         </div>
+
+        <div className={styles.pagination} aria-hidden="true">
+          {testimonials.map((_, i) => (
+            <button 
+              key={i} 
+              className={`${styles.dot} ${i === activeIndex ? styles.dotActive : ''}`}
+              onClick={() => {
+                if (gridRef.current) {
+                  gridRef.current.scrollTo({
+                    left: gridRef.current.clientWidth * i,
+                    behavior: 'smooth'
+                  })
+                }
+              }}
+              aria-label={`Go to slide ${i + 1}`}
+            />
+          ))}
+        </div>
+
+        <div style={{ marginTop: 'var(--space-12)', textAlign: 'center' }}>
+          <button 
+            className="btn btn--secondary" 
+            onClick={() => setShowReviewForm(!showReviewForm)}
+          >
+            {showReviewForm ? 'Cancel' : 'Write a Review'}
+          </button>
+        </div>
+
+        {showReviewForm && (
+          <div style={{ marginTop: 'var(--space-8)' }}>
+            <ReviewForm />
+          </div>
+        )}
       </div>
     </section>
   )

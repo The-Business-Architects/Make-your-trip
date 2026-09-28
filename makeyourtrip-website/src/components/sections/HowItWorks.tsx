@@ -8,19 +8,19 @@ const steps = [
     id: 'step-1',
     number: '01',
     title: 'Tell Us About Your Trip',
-    desc: 'Share your destination, travel dates, departure city, and any specific requirements. The more detail you provide, the better we can assist you.',
+    desc: 'Share your destination, dates, and preferences. We handle the complex logistics.',
   },
   {
     id: 'step-2',
     number: '02',
     title: 'We Help Plan Your Options',
-    desc: 'Our team reviews your inquiry and helps identify suitable travel options based on your needs, preferences, and timeline.',
+    desc: 'Our experts craft a bespoke itinerary perfectly tailored to your travel style.',
   },
   {
     id: 'step-3',
     number: '03',
     title: 'Move Forward With Confidence',
-    desc: 'Get the personalized assistance you need to move ahead with your journey — from planning through to departure.',
+    desc: 'Review your curated options and embark on your journey with complete peace of mind.',
   },
 ]
 
@@ -35,10 +35,11 @@ export default function HowItWorks() {
       aria-labelledby="hiw-heading"
     >
       <div className="container">
-        <div className={`text-center reveal-on-scroll ${styles.head}`} ref={headRef}>
+        <div className={`reveal-left ${styles.head}`} ref={headRef}>
           <p className="eyebrow eyebrow--light">How It Works</p>
+          <hr className="divider divider--light" />
           <h2 className="section-title section-title--light" id="hiw-heading">
-            Three Steps to<br />Your Next Journey
+            Three Steps to<br /><em>Your Next Journey.</em>
           </h2>
         </div>
 

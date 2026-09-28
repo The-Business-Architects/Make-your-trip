@@ -3,6 +3,7 @@ import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import PageHero from '@/components/ui/PageHero'
 import InquiryForm from '@/components/forms/InquiryForm'
+import { Suspense } from 'react'
 import styles from './page.module.css'
 
 export const metadata: Metadata = {
@@ -22,64 +23,36 @@ export default function PlanYourTripPage() {
       <Header />
       <main id="main-content">
         <PageHero
-          eyebrow="Get Started"
           title="Let's Plan Your Journey"
-          subtitle="Tell us a little about your trip and our team will get back to you."
-        />
+          className={styles.compactHero}
+        >
+          <div className={styles.heroContactBlock}>
+            <p className={styles.heroContactTitle}>Prefer to Reach Us Directly?</p>
+            <div className={styles.heroContactGrid}>
+              <a href="tel:+910000000000" className={styles.heroContactItem}>
+                <span className={styles.heroContactLabel}>India</span>
+                <span className={styles.heroContactLink}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                  +91 000 000 0000
+                </span>
+              </a>
+              <div className={styles.heroContactDivider} aria-hidden="true" />
+              <a href="tel:+18000000000" className={styles.heroContactItem}>
+                <span className={styles.heroContactLabel}>International</span>
+                <span className={styles.heroContactLink}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                  +1 (800) 000-0000
+                </span>
+              </a>
+            </div>
+          </div>
+        </PageHero>
 
         <section className={`section ${styles.formSection}`} aria-label="Travel inquiry form">
           <div className={`container ${styles.layout}`}>
-
-            {/* Left: Form */}
-            <div className={styles.formCol}>
+            <Suspense fallback={<div style={{ textAlign: 'center', padding: '2rem' }}>Loading form...</div>}>
               <InquiryForm />
-            </div>
-
-            {/* Right: Info sidebar */}
-            <aside className={styles.sidebar} aria-label="Contact information">
-              <div className={styles.sidebarCard}>
-                <h2 className={styles.sidebarTitle}>What Happens Next?</h2>
-                <ol className={styles.stepsList}>
-                  {[
-                    'We receive your inquiry and review your requirements.',
-                    'A member of our team gets in touch to discuss your options.',
-                    'We help you move forward with the right plan for your journey.',
-                  ].map((step, i) => (
-                    <li key={i} className={styles.stepsItem}>
-                      <span className={styles.stepsNum} aria-hidden="true">
-                        {String(i + 1).padStart(2, '0')}
-                      </span>
-                      <p>{step}</p>
-                    </li>
-                  ))}
-                </ol>
-              </div>
-
-              <div className={styles.sidebarCard}>
-                <h2 className={styles.sidebarTitle}>Prefer to Reach Us Directly?</h2>
-                <address style={{ fontStyle: 'normal' }}>
-                  <p className={styles.contactItem}>
-                    <span className={styles.contactLabel}>Email</span>
-                    <a href="mailto:info@makeyourtripinc.com" className={styles.contactLink}>
-                      info@makeyourtripinc.com
-                    </a>
-                  </p>
-                  <p className={styles.contactItem}>
-                    <span className={styles.contactLabel}>Phone / WhatsApp</span>
-                    <a href="tel:+18000000000" className={styles.contactLink}>
-                      +1 (800) 000-0000
-                    </a>
-                  </p>
-                </address>
-              </div>
-
-              <div className={styles.sidebarCard + ' ' + styles.sidebarCardDark}>
-                <p className={styles.sidebarNote}>
-                  Serving travelers across the <strong>USA, Canada, and United Kingdom.</strong>
-                </p>
-              </div>
-            </aside>
-
+            </Suspense>
           </div>
         </section>
       </main>

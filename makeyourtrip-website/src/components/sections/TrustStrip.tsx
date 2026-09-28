@@ -62,8 +62,10 @@ export default function TrustStrip() {
               <div className={styles.iconWrap} aria-hidden="true">
                 {icon}
               </div>
-              <h3 className={styles.itemTitle}>{title}</h3>
-              <p className={styles.itemDesc}>{desc}</p>
+              <div className={styles.itemText}>
+                <h3 className={styles.itemTitle}>{title}</h3>
+                <p className={styles.itemDesc}>{desc}</p>
+              </div>
             </div>
           ))}
         </div>

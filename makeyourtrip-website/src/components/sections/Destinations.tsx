@@ -23,9 +23,12 @@ export default function Destinations() {
   return (
     <section className={`section ${styles.section}`} id="destinations" aria-labelledby="dest-heading">
       <div className="container container--wide">
-        <div className={`reveal-on-scroll ${styles.head}`} ref={headRef}>
+        <div className={`reveal-left ${styles.head}`} ref={headRef}>
           <p className="eyebrow">Explore the World</p>
-          <h2 className="section-title" id="dest-heading">Where Will You Go Next?</h2>
+          <hr className="divider" />
+          <h2 className="section-title" id="dest-heading">
+            Where Will You Go <em>Next?</em>
+          </h2>
           <p className="section-subtitle">
             From iconic cities to emerging destinations — wherever you&apos;re headed,
             we help you plan the journey with confidence.

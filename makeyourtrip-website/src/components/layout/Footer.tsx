@@ -44,7 +44,7 @@ export default function Footer() {
               </span>
             </Link>
             <p className={styles.brandDesc}>
-              Personalized international travel assistance for travelers across the USA, Canada, and UK.
+              Personalized international travel assistance for travelers worldwide.
               Tell us where you&apos;re going — we&apos;ll help you plan the journey.
             </p>
 
@@ -129,7 +129,7 @@ export default function Footer() {
               </div>
               <div className={styles.contactItem}>
                 <span className={styles.contactLabel}>Serving</span>
-                <span className={styles.contactValue}>USA · Canada · United Kingdom</span>
+                <span className={styles.contactValue}>Worldwide</span>
               </div>
             </address>
           </div>

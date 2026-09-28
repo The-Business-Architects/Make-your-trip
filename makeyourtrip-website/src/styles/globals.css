@@ -1,6 +1,6 @@
 /**
  * MakeYourTrip Inc. — Global Styles
- * Imports tokens, then provides resets + base typography + utility classes.
+ * Premium Airline Brand: Crisp White + Cobalt Blue + Gold
  */
 
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@300;400;500;600;700;800&display=swap');
@@ -145,12 +145,12 @@ ul, ol {
   font-weight: var(--weight-semibold);
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
-  color: var(--color-accent);
+  color: var(--color-primary);
   margin-bottom: var(--space-4);
 }
 
 .eyebrow--light {
-  color: var(--color-sand);
+  color: rgba(180, 210, 255, 0.85);
 }
 
 .section-title {
@@ -162,7 +162,16 @@ ul, ol {
   margin-bottom: var(--space-6);
 }
 
+.section-title em {
+  font-style: italic;
+  color: var(--color-primary);
+}
+
 .section-title--light {
+  color: var(--color-text-inverse);
+}
+
+.section-title--light em {
   color: var(--color-text-inverse);
 }
 
@@ -202,63 +211,62 @@ ul, ol {
 }
 
 .btn--primary {
-  background-color: var(--color-ink);
-  color: var(--color-text-inverse);
-  border-color: var(--color-ink);
+  background: var(--color-blue-gradient);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: var(--shadow-blue);
 }
 
 .btn--primary:hover {
-  background-color: var(--color-ink-soft);
-  border-color: var(--color-accent);
-  color: #ffffff;
+  background: var(--color-blue-gradient-hover);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(11, 15, 23, 0.25);
+  box-shadow: 0 10px 32px rgba(26, 86, 219, 0.30);
+  color: #ffffff;
 }
 
 .btn--secondary {
   background-color: transparent;
-  color: var(--color-ink);
-  border-color: var(--color-ink);
+  color: var(--color-primary);
+  border-color: var(--color-primary);
 }
 
 .btn--secondary:hover {
-  background-color: var(--color-ink);
-  color: var(--color-accent);
-  border-color: var(--color-ink);
+  background-color: var(--color-primary);
+  color: #ffffff;
+  border-color: var(--color-primary);
   transform: translateY(-2px);
-  box-shadow: 0 4px 14px rgba(11, 15, 23, 0.15);
+  box-shadow: var(--shadow-blue);
 }
 
 .btn--ghost {
-  background-color: rgba(255,255,255,0.06);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  color: var(--color-text-inverse);
-  border-color: rgba(255,255,255,0.35);
+  background-color: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.40);
 }
 
 .btn--ghost:hover {
-  background-color: rgba(255,255,255,0.16);
-  border-color: rgba(255,255,255,0.8);
-  color: var(--color-text-inverse);
+  background-color: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.85);
+  color: #ffffff;
   transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
 }
 
 .btn--accent {
   background: var(--color-gold-gradient);
-  color: #0b0f17;
-  border-color: #ba9245;
+  color: #0a1628;
+  border-color: transparent;
   font-weight: var(--weight-bold);
-  box-shadow: 0 4px 18px var(--color-accent-glow);
+  box-shadow: var(--shadow-gold);
 }
 
 .btn--accent:hover {
   background: var(--color-gold-gradient-hover);
-  border-color: #c79e51;
-  color: #0b0f17;
+  color: #0a1628;
   transform: translateY(-2px);
-  box-shadow: 0 8px 26px rgba(197, 160, 89, 0.45);
+  box-shadow: 0 12px 36px rgba(200, 151, 42, 0.40);
 }
 
 .btn--sm {
@@ -302,14 +310,15 @@ ul, ol {
  * ───────────────────────────────────────────── */
 .divider {
   width: 2.5rem;
-  height: 2px;
-  background-color: var(--color-accent);
+  height: 2.5px;
+  background: var(--color-blue-gradient);
   border: none;
+  border-radius: 2px;
   margin-bottom: var(--space-6);
 }
 
 .divider--light {
-  background-color: var(--color-sand);
+  background: linear-gradient(90deg, rgba(180, 210, 255, 0.80), transparent);
 }
 
 .divider--center {

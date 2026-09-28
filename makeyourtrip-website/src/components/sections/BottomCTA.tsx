@@ -18,7 +18,7 @@ export default function BottomCTA() {
         <div className={styles.textBlock}>
           <p className="eyebrow eyebrow--light">Ready to Travel?</p>
           <h2 className={styles.heading} id="bottom-cta-heading">
-            Planning Your Next Journey?
+            Planning Your Next <em>Journey?</em>
           </h2>
           <p className={styles.sub}>
             Tell us where you&apos;re going and what you need.

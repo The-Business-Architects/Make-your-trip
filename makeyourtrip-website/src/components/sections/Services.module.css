@@ -1,25 +1,44 @@
-.section { }
+/* ================================================================
+ * Services Section — Premium Cards with Cobalt Blue Accents
+ * ================================================================ */
+
+.section {
+  background-color: var(--color-ivory-warm);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle blue shimmer top-right */
+.section::before {
+  content: '';
+  position: absolute;
+  top: -120px;
+  right: -120px;
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(26, 86, 219, 0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
 
 .head {
   max-width: 680px;
-  margin-inline: auto;
   margin-bottom: var(--space-16);
 }
 
 .subtitle {
-  margin-inline: auto;
-  text-align: center;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-1);
+  gap: var(--space-6);
 }
 
 .card {
   background: var(--color-bg-primary);
-  border: 1px solid var(--color-border);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-xl);
   padding: var(--space-10) var(--space-8);
   display: flex;
   flex-direction: column;
@@ -30,32 +49,50 @@
   transition: all var(--transition-base);
 }
 
+/* Blue accent top line on hover */
 .card::before {
   content: '';
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 0;
-  width: 0;
-  height: 2px;
-  background-color: var(--color-accent);
-  transition: width var(--transition-base);
+  right: 0;
+  height: 3px;
+  background: var(--color-blue-gradient);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-base);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
 }
 
 .card:hover {
-  background-color: var(--color-ivory);
-  box-shadow: var(--shadow-md);
-  transform: translateY(-3px);
+  border-color: rgba(26, 86, 219, 0.25);
+  box-shadow: var(--shadow-lg), 0 0 0 1px rgba(26, 86, 219, 0.10);
+  transform: translateY(-4px);
 }
 
 .card:hover::before {
-  width: 100%;
+  transform: scaleX(1);
 }
 
 .cardIcon {
-  color: var(--color-accent);
-  width: 24px;
-  height: 24px;
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-lg);
+  background: var(--color-primary-light);
+  border: 1px solid rgba(26, 86, 219, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
   flex-shrink: 0;
+  transition: all var(--transition-base);
+}
+
+.card:hover .cardIcon {
+  background: var(--color-blue-gradient);
+  border-color: transparent;
+  color: #ffffff;
+  box-shadow: var(--shadow-blue);
 }
 
 .cardTitle {
@@ -76,17 +113,25 @@
 }
 
 .cardArrow {
-  font-size: var(--text-base);
-  color: var(--color-accent);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--color-primary);
   opacity: 0;
-  transform: translateX(-6px);
+  transform: translateX(-8px);
   transition: all var(--transition-base);
   margin-top: var(--space-2);
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
 }
 
 .card:hover .cardArrow {
   opacity: 1;
   transform: translateX(0);
+}
+
+.pagination {
+  display: none;
 }
 
 @media (max-width: 900px) {
@@ -95,12 +140,59 @@
   }
 }
 
-@media (max-width: 560px) {
+@media (max-width: 768px) {
   .grid {
-    grid-template-columns: 1fr;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    gap: var(--space-4);
+    padding-bottom: var(--space-6);
+    /* Hide scrollbar */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .grid::-webkit-scrollbar {
+    display: none;
   }
 
   .card {
-    padding: var(--space-8) var(--space-6);
+    min-width: 85vw;
+    scroll-snap-align: center;
+    padding: var(--space-6) var(--space-5);
+  }
+
+  .cardIcon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .cardTitle {
+    font-size: var(--text-lg);
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-2);
+    margin-top: var(--space-6);
+  }
+
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--color-stone-soft);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 0;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .dot--active {
+    width: 24px;
+    background: var(--color-primary);
+    border-color: var(--color-primary);
   }
 }
+

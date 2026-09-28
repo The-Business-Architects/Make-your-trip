@@ -1,5 +1,22 @@
+/* ================================================================
+ * Why MYT — Premium Numbered Grid with Cobalt Accents
+ * ================================================================ */
+
 .section {
-  background-color: var(--color-ivory-warm);
+  background-color: var(--color-bg-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative tilted line accent */
+.section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-accent) 50%, transparent 100%);
 }
 
 .head {
@@ -9,43 +26,67 @@
 
 .head h2 em {
   font-style: italic;
-  color: var(--color-charcoal);
+  color: var(--color-primary);
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 0;
+  gap: var(--space-6);
 }
 
 .item {
   display: flex;
   align-items: flex-start;
-  gap: var(--space-8);
-  padding: var(--space-10) var(--space-8);
-  border: 1px solid var(--color-border);
-  margin: -1px -1px 0 0; /* collapse borders */
-  transition: background-color var(--transition-base);
+  gap: var(--space-6);
+  padding: var(--space-8) var(--space-8);
+  background: var(--color-ivory-warm);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--color-blue-gradient);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform var(--transition-base);
+  border-radius: 0 2px 2px 0;
 }
 
 .item:hover {
-  background-color: var(--color-bg-primary);
+  background: var(--color-bg-primary);
+  border-color: rgba(26, 86, 219, 0.25);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+}
+
+.item:hover::before {
+  transform: scaleY(1);
 }
 
 .itemIndex {
   font-family: var(--font-serif);
-  font-size: var(--text-4xl);
+  font-size: clamp(2rem, 3vw, 2.5rem);
   line-height: 1;
   color: var(--color-stone);
   font-style: italic;
   flex-shrink: 0;
-  width: 52px;
+  width: 48px;
   letter-spacing: -0.02em;
   transition: color var(--transition-base);
 }
 
 .item:hover .itemIndex {
-  color: var(--color-accent);
+  color: var(--color-primary);
 }
 
 .itemBody {
@@ -73,18 +114,10 @@
 @media (max-width: 768px) {
   .grid {
     grid-template-columns: 1fr;
+    gap: var(--space-4);
   }
 
   .item {
-    margin: 0;
-    border-left: none;
-    border-right: none;
-    border-top: none;
-    border-bottom: 1px solid var(--color-border);
-    padding: var(--space-8) 0;
-  }
-
-  .item:last-child {
-    border-bottom: none;
+    padding: var(--space-6) var(--space-6);
   }
 }

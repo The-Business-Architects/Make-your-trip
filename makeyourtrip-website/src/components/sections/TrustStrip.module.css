@@ -1,25 +1,48 @@
+/* ================================================================
+ * Trust Strip — Premium Cobalt Blue Band
+ * ================================================================ */
+
 .section {
-  border-top: 1px solid var(--color-border);
-  border-bottom: 1px solid var(--color-border);
-  background-color: var(--color-ivory-warm);
+  background: linear-gradient(135deg, #0a1628 0%, #112040 50%, #0d1f4a 100%);
+  border-top: none;
+  border-bottom: none;
+  padding-block: clamp(2.5rem, 4vw, 4rem);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle shimmer backdrop */
+.section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(26, 86, 219, 0.18) 0%, transparent 65%);
+  pointer-events: none;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-8);
+  gap: 0;
+  position: relative;
 }
 
 .item {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: flex-start;
   gap: var(--space-4);
-  padding: var(--space-8) var(--space-6);
-  border-right: 1px solid var(--color-border);
+  padding: var(--space-6) var(--space-8);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  transition: background var(--transition-base);
 }
 
 .item:last-child {
   border-right: none;
+}
+
+.item:hover {
+  background: rgba(26, 86, 219, 0.10);
 }
 
 .iconWrap {
@@ -28,24 +51,33 @@
   justify-content: center;
   width: 44px;
   height: 44px;
-  color: var(--color-accent);
+  border-radius: var(--radius-lg);
+  background: rgba(200, 151, 42, 0.12);
+  border: 1px solid rgba(200, 151, 42, 0.25);
+  color: #dba92e;
   flex-shrink: 0;
 }
 
 .itemTitle {
-  font-family: var(--font-serif);
-  font-size: var(--text-lg);
-  font-weight: var(--weight-regular);
-  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+  color: #ffffff;
   line-height: var(--leading-snug);
+  margin-bottom: var(--space-1);
 }
 
 .itemDesc {
   font-family: var(--font-sans);
   font-size: var(--text-sm);
   line-height: var(--leading-relaxed);
-  color: var(--color-slate);
+  color: rgba(180, 205, 255, 0.70);
   max-width: none;
+}
+
+.itemText {
+  display: flex;
+  flex-direction: column;
 }
 
 @media (max-width: 900px) {
@@ -58,12 +90,12 @@
   }
 
   .item:nth-child(3) {
-    border-top: 1px solid var(--color-border);
-    border-right: 1px solid var(--color-border);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .item:nth-child(4) {
-    border-top: 1px solid var(--color-border);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
     border-right: none;
   }
 }
@@ -75,8 +107,8 @@
 
   .item {
     border-right: none;
-    border-bottom: 1px solid var(--color-border);
-    padding: var(--space-6) 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: var(--space-5) var(--container-pad);
   }
 
   .item:last-child {

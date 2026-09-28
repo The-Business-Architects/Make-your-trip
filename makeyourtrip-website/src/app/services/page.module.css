@@ -1,0 +1,74 @@
+/* Services page */
+.servicesSection {}
+
+.servicesList {
+  display: flex;
+  flex-direction: column;
+}
+
+.serviceRow {
+  display: grid;
+  grid-template-columns: 80px 1fr auto;
+  gap: var(--space-8);
+  align-items: flex-start;
+  padding: var(--space-10) 0;
+  border-bottom: 1px solid var(--color-border);
+  transition: background var(--transition-fast);
+}
+
+.serviceRow:first-child {
+  border-top: 1px solid var(--color-border);
+}
+
+.serviceRow:hover .serviceNum {
+  color: #c9a84c;
+}
+
+.serviceNum {
+  font-family: var(--font-serif);
+  font-size: var(--text-4xl);
+  color: var(--color-stone, #e2ddd8);
+  font-style: italic;
+  line-height: 1;
+  transition: color var(--transition-base);
+  flex-shrink: 0;
+}
+
+.serviceContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.serviceTitle {
+  font-family: var(--font-serif);
+  font-size: var(--text-3xl);
+  color: var(--color-ink);
+  line-height: var(--leading-tight);
+}
+
+.serviceDesc {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  color: var(--color-charcoal);
+  line-height: 1.75;
+  max-width: 60ch;
+}
+
+.serviceAction {
+  padding-top: var(--space-2);
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .serviceRow {
+    grid-template-columns: 48px 1fr;
+    grid-template-rows: auto auto;
+    gap: var(--space-4);
+  }
+
+  .serviceAction {
+    grid-column: 2;
+    padding-top: 0;
+  }
+}

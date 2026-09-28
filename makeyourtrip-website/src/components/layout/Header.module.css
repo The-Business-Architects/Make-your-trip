@@ -20,15 +20,15 @@
 }
 
 .header--transparent {
-  background: linear-gradient(180deg, rgba(8, 12, 19, 0.8) 0%, rgba(8, 12, 19, 0.3) 65%, transparent 100%);
+  background: linear-gradient(180deg, rgba(6, 15, 35, 0.75) 0%, rgba(6, 15, 35, 0.25) 65%, transparent 100%);
 }
 
 .header--scrolled {
-  background-color: rgba(11, 15, 23, 0.95);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(197, 160, 89, 0.22);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  background-color: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(26, 86, 219, 0.12);
+  box-shadow: 0 4px 24px rgba(10, 22, 40, 0.08);
   height: var(--header-height-scrolled);
 }
 
@@ -85,15 +85,16 @@
   font-weight: var(--weight-semibold);
   letter-spacing: var(--tracking-wider);
   text-transform: uppercase;
-  color: var(--color-accent);
+  color: white;
+  transition: color var(--transition-fast);
 }
 
-.header--transparent .logoName {
-  color: #ffffff;
+.header--scrolled .logoName {
+  color: var(--color-ink);
 }
 
-.header--transparent .logoTagline {
-  color: #e5cb96;
+.header--scrolled .logoTagline {
+  color: var(--color-primary);
 }
 
 /* ─── Nav ───────────────────────────────────── */
@@ -122,17 +123,27 @@
   bottom: -2px;
   left: 0;
   width: 0;
-  height: 1.5px;
-  background-color: var(--color-accent);
+  height: 2px;
+  background: var(--color-blue-gradient);
   transition: width var(--transition-base);
+  border-radius: 2px;
 }
 
 .navLink:hover {
-  color: var(--color-accent);
+  color: #ffffff;
 }
 
 .navLink:hover::after {
   width: 100%;
+}
+
+/* Scrolled nav — dark links */
+.header--scrolled .navLink {
+  color: var(--color-charcoal);
+}
+
+.header--scrolled .navLink:hover {
+  color: var(--color-primary);
 }
 
 .header--transparent .navLink {
@@ -144,7 +155,7 @@
 }
 
 .header--transparent .navLink::after {
-  background-color: var(--color-accent);
+  background: var(--color-gold-gradient);
 }
 
 /* ─── CTA Button ─────────────────────────────── */
@@ -154,9 +165,9 @@
   font-weight: var(--weight-semibold);
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
-  color: #0b0f17;
-  background: var(--color-gold-gradient);
-  border: 1.5px solid #ba9245;
+  color: #ffffff;
+  background: var(--color-blue-gradient);
+  border: none;
   border-radius: var(--radius-md);
   padding: var(--space-3) var(--space-6);
   text-decoration: none;
@@ -165,29 +176,29 @@
   gap: var(--space-2);
   transition: all var(--transition-base);
   white-space: nowrap;
-  box-shadow: 0 3px 12px var(--color-accent-glow);
+  box-shadow: var(--shadow-blue);
 }
 
 .navCta:hover {
-  background: var(--color-gold-gradient-hover);
-  border-color: #c79e51;
-  color: #0b0f17;
+  background: var(--color-blue-gradient-hover);
+  color: #ffffff;
   transform: translateY(-1px);
-  box-shadow: 0 5px 18px rgba(197, 160, 89, 0.45);
+  box-shadow: 0 8px 24px rgba(26, 86, 219, 0.35);
 }
 
 .header--transparent .navCta {
-  background: rgba(197, 160, 89, 0.16);
-  border-color: rgba(197, 160, 89, 0.65);
-  color: #fcf6e8;
-  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.10);
+  border: 1.5px solid rgba(255, 255, 255, 0.50);
+  color: #ffffff;
+  backdrop-filter: blur(10px);
+  box-shadow: none;
 }
 
 .header--transparent .navCta:hover {
-  background: var(--color-gold-gradient);
-  color: #0b0f17;
-  border-color: #ba9245;
-  box-shadow: 0 4px 18px var(--color-accent-glow);
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.85);
+  color: #ffffff;
+  box-shadow: none;
 }
 
 /* ─── Hamburger (mobile) ─────────────────────── */
@@ -278,7 +289,7 @@
 }
 
 .mobileNavLink:hover {
-  color: var(--color-accent);
+  color: var(--color-primary);
   padding-left: var(--space-3);
 }
 
@@ -292,16 +303,18 @@
   font-weight: var(--weight-semibold);
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
-  background-color: var(--color-ink);
+  background: var(--color-blue-gradient);
   color: white;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   text-decoration: none;
-  transition: background-color var(--transition-fast);
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-blue);
 }
 
 .mobileCta:hover {
-  background-color: var(--color-accent);
+  background: var(--color-blue-gradient-hover);
   color: white;
+  transform: translateY(-1px);
 }
 
 /* ─── Responsive ─────────────────────────────── */

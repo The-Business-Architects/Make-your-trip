@@ -8,11 +8,11 @@ export const metadata: Metadata = {
     template: '%s | MakeYourTrip Inc.',
   },
   description:
-    'MakeYourTrip Inc. helps travelers across the USA, Canada, and UK plan international journeys with personalized assistance. Tell us where you\'re going — we\'ll help you get there.',
+    'MakeYourTrip Inc. helps travelers worldwide plan international journeys with personalized assistance. Tell us where you\'re going — we\'ll help you get there.',
   keywords: [
     'international travel consultancy',
-    'travel planning USA',
-    'travel assistance Canada UK',
+    'travel planning worldwide',
+    'travel assistance worldwide',
     'personalized travel advisor',
     'flight planning help',
     'MakeYourTrip Inc.',
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     siteName: 'MakeYourTrip Inc.',
     title: 'MakeYourTrip Inc. | Premium International Travel Consultancy',
     description:
-      'Personalized international travel assistance for travelers across the USA, Canada, and UK.',
+      'Personalized international travel assistance for travelers worldwide.',
     images: [
       {
         url: '/images/hero/hero-main.jpg',
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'MakeYourTrip Inc. | Premium International Travel Consultancy',
     description:
-      'Personalized international travel assistance for travelers across the USA, Canada, and UK.',
+      'Personalized international travel assistance for travelers worldwide.',
   },
   robots: {
     index: true,

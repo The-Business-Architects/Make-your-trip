@@ -1,49 +1,47 @@
 /**
  * MakeYourTrip Inc. — Design Tokens
  * =============================================================
- * Single source of truth for the entire visual system.
- * To rebrand: update values in this file only.
- *
- * Organized by:
- *   1. Colors
- *   2. Typography
- *   3. Spacing
- *   4. Borders & Radius
- *   5. Shadows
- *   6. Transitions
- *   7. Layout
- *   8. Z-Index
+ * Premium Airline Brand Palette: Crisp White + Cobalt Blue + Gold
  * =============================================================
  */
 
 :root {
   /* ─────────────────────────────────────────────────────────
-   * 1. COLORS
-   * Primary palette: deep ink + warm ivory + muted ocean blue
+   * 1. COLORS — High-End Airline Brand
    * ───────────────────────────────────────────────────────── */
 
-  /* Core darks — Midnight Onyx */
-  --color-ink:        #0b0f17;   /* deep midnight onyx — luxury dark */
-  --color-ink-soft:   #141a26;   /* elevated cards on dark bg, footer */
-  --color-charcoal:   #2d3446;   /* secondary text on light bg */
-  --color-slate:      #5c667a;   /* muted text, labels, eyebrows */
+  /* Core darks — Deep Navy */
+  --color-ink:        #0a1628;   /* deep prestige navy */
+  --color-ink-soft:   #112040;   /* elevated navy — cards on dark */
+  --color-charcoal:   #1e2d45;   /* secondary text on light bg */
+  --color-slate:      #5a6e8a;   /* muted labels, eyebrows */
 
-  /* Core lights — Silk Ivory */
-  --color-ivory:      #fbfaf7;   /* primary page background — warm silk */
-  --color-ivory-warm: #f4efe6;   /* slightly deeper warm linen */
-  --color-stone:      #e4ddd2;   /* borders, dividers, subtle separators */
-  --color-stone-soft: #ebe5da;   /* alternate divider, card bg tints */
+  /* Core lights — Crisp Whites */
+  --color-ivory:      #ffffff;   /* primary page background — pure white */
+  --color-ivory-warm: #f4f7fb;   /* cool-light blueish white for alt sections */
+  --color-stone:      #dce5f0;   /* borders, dividers */
+  --color-stone-soft: #e8eef6;   /* alt divider, card bg tints */
 
-  /* Accent — Radiant Champagne Gold */
-  --color-accent:       #c5a059; /* luxury champagne gold */
-  --color-accent-hover: #b58f48; /* deep warm gold hover */
-  --color-accent-light: rgba(197, 160, 89, 0.12); /* champagne wash */
-  --color-accent-glow:  rgba(197, 160, 89, 0.28); /* subtle luminous glow */
+  /* Primary — Cobalt Blue */
+  --color-primary:        #1a56db;   /* signature cobalt blue */
+  --color-primary-hover:  #1447c0;   /* deeper cobalt on hover */
+  --color-primary-light:  rgba(26, 86, 219, 0.1);
+  --color-primary-glow:   rgba(26, 86, 219, 0.22);
+  --color-primary-dark:   #0a2d78;   /* deep navy blue */
 
-  /* Warm sand & gold aliases */
-  --color-sand:               #c5a059;   /* warm gold highlight */
-  --color-gold-gradient:      linear-gradient(135deg, #d4b26f 0%, #ba9245 100%);
-  --color-gold-gradient-hover:linear-gradient(135deg, #dfbe7d 0%, #c79e51 100%);
+  /* Accent — Prestige Gold */
+  --color-accent:       #c8972a;   /* prestige gold */
+  --color-accent-hover: #b07f1e;   /* deep warm gold hover */
+  --color-accent-light: rgba(200, 151, 42, 0.12);
+  --color-accent-glow:  rgba(200, 151, 42, 0.30);
+
+  /* Gold gradient */
+  --color-gold-gradient:       linear-gradient(135deg, #dba92e 0%, #b8841a 100%);
+  --color-gold-gradient-hover: linear-gradient(135deg, #e8b838 0%, #c49020 100%);
+
+  /* Blue gradient */
+  --color-blue-gradient:       linear-gradient(135deg, #1a56db 0%, #0a2d78 100%);
+  --color-blue-gradient-hover: linear-gradient(135deg, #2060e8 0%, #1038a0 100%);
 
   /* Semantic */
   --color-text-primary:   var(--color-ink);
@@ -62,8 +60,8 @@
   --color-border-soft:  var(--color-stone-soft);
 
   /* Status */
-  --color-success: #237854;
-  --color-error:   #b83324;
+  --color-success: #0f7a4b;
+  --color-error:   #c0392b;
 
   /* ─────────────────────────────────────────────────────────
    * 2. TYPOGRAPHY
@@ -81,17 +79,17 @@
   --weight-extrabold: 800;
 
   /* Type scale — fluid via clamp() */
-  --text-xs:   0.75rem;    /* 12px */
-  --text-sm:   0.875rem;   /* 14px */
-  --text-base: 1rem;       /* 16px */
-  --text-lg:   1.125rem;   /* 18px */
-  --text-xl:   1.25rem;    /* 20px */
-  --text-2xl:  1.5rem;     /* 24px */
-  --text-3xl:  1.875rem;   /* 30px */
-  --text-4xl:  clamp(1.875rem, 3.2vw, 2.375rem); /* 30–38px */
-  --text-5xl:  clamp(2.125rem, 3.8vw, 3rem);     /* 34–48px */
-  --text-6xl:  clamp(2.5rem, 4.5vw, 3.625rem);   /* 40–58px */
-  --text-7xl:  clamp(2.75rem, 5vw, 4.25rem);     /* 44–68px */
+  --text-xs:   0.75rem;
+  --text-sm:   0.875rem;
+  --text-base: 1rem;
+  --text-lg:   1.125rem;
+  --text-xl:   1.25rem;
+  --text-2xl:  1.5rem;
+  --text-3xl:  1.875rem;
+  --text-4xl:  clamp(1.875rem, 3.2vw, 2.375rem);
+  --text-5xl:  clamp(2.125rem, 3.8vw, 3rem);
+  --text-6xl:  clamp(2.5rem, 4.5vw, 3.625rem);
+  --text-7xl:  clamp(2.75rem, 5vw, 4.25rem);
 
   /* Line heights */
   --leading-tight:  1.15;
@@ -109,21 +107,21 @@
   /* ─────────────────────────────────────────────────────────
    * 3. SPACING (4px base unit)
    * ───────────────────────────────────────────────────────── */
-  --space-1:   0.25rem;  /* 4px  */
-  --space-2:   0.5rem;   /* 8px  */
-  --space-3:   0.75rem;  /* 12px */
-  --space-4:   1rem;     /* 16px */
-  --space-5:   1.25rem;  /* 20px */
-  --space-6:   1.5rem;   /* 24px */
-  --space-7:   1.75rem;  /* 28px */
-  --space-8:   2rem;     /* 32px */
-  --space-10:  2.5rem;   /* 40px */
-  --space-12:  3rem;     /* 48px */
-  --space-14:  3.5rem;   /* 56px */
-  --space-16:  4rem;     /* 64px */
-  --space-20:  5rem;     /* 80px */
-  --space-24:  6rem;     /* 96px */
-  --space-32:  8rem;     /* 128px */
+  --space-1:   0.25rem;
+  --space-2:   0.5rem;
+  --space-3:   0.75rem;
+  --space-4:   1rem;
+  --space-5:   1.25rem;
+  --space-6:   1.5rem;
+  --space-7:   1.75rem;
+  --space-8:   2rem;
+  --space-10:  2.5rem;
+  --space-12:  3rem;
+  --space-14:  3.5rem;
+  --space-16:  4rem;
+  --space-20:  5rem;
+  --space-24:  6rem;
+  --space-32:  8rem;
 
   /* Section vertical rhythm */
   --section-padding-y: clamp(5rem, 8vw, 8rem);
@@ -132,12 +130,12 @@
   /* ─────────────────────────────────────────────────────────
    * 4. BORDERS & RADIUS
    * ───────────────────────────────────────────────────────── */
-  --radius-sm:   0.25rem;  /* 4px  — subtle rounding */
-  --radius-md:   0.5rem;   /* 8px  — buttons, inputs */
-  --radius-lg:   0.75rem;  /* 12px — cards */
-  --radius-xl:   1rem;     /* 16px — large cards */
-  --radius-2xl:  1.5rem;   /* 24px — featured elements */
-  --radius-full: 9999px;   /* pill */
+  --radius-sm:   0.25rem;
+  --radius-md:   0.5rem;
+  --radius-lg:   0.875rem;
+  --radius-xl:   1.25rem;
+  --radius-2xl:  2rem;
+  --radius-full: 9999px;
 
   --border-width: 1px;
   --border-width-md: 1.5px;
@@ -145,11 +143,13 @@
   /* ─────────────────────────────────────────────────────────
    * 5. SHADOWS
    * ───────────────────────────────────────────────────────── */
-  --shadow-xs: 0 1px 2px rgba(26, 31, 46, 0.04);
-  --shadow-sm: 0 2px 8px rgba(26, 31, 46, 0.07);
-  --shadow-md: 0 4px 20px rgba(26, 31, 46, 0.10);
-  --shadow-lg: 0 12px 40px rgba(26, 31, 46, 0.13);
-  --shadow-xl: 0 24px 60px rgba(26, 31, 46, 0.16);
+  --shadow-xs: 0 1px 3px rgba(10, 22, 40, 0.05);
+  --shadow-sm: 0 2px 10px rgba(10, 22, 40, 0.08);
+  --shadow-md: 0 6px 24px rgba(10, 22, 40, 0.10);
+  --shadow-lg: 0 16px 48px rgba(10, 22, 40, 0.13);
+  --shadow-xl: 0 28px 72px rgba(10, 22, 40, 0.16);
+  --shadow-blue: 0 8px 32px rgba(26, 86, 219, 0.20);
+  --shadow-gold: 0 8px 32px rgba(200, 151, 42, 0.28);
 
   /* ─────────────────────────────────────────────────────────
    * 6. TRANSITIONS
@@ -167,11 +167,11 @@
   /* ─────────────────────────────────────────────────────────
    * 7. LAYOUT
    * ───────────────────────────────────────────────────────── */
-  --container-xs:  36rem;   /* 576px  */
-  --container-sm:  48rem;   /* 768px  */
-  --container-md:  64rem;   /* 1024px */
-  --container-lg:  80rem;   /* 1280px */
-  --container-xl:  90rem;   /* 1440px */
+  --container-xs:  36rem;
+  --container-sm:  48rem;
+  --container-md:  64rem;
+  --container-lg:  80rem;
+  --container-xl:  90rem;
   --container-pad: clamp(1.25rem, 4vw, 2.5rem);
 
   --header-height: 80px;
@@ -186,4 +186,7 @@
   --z-modal:   200;
   --z-header:  300;
   --z-toast:   400;
+
+  /* Legacy aliases — keep backward compat */
+  --color-sand: var(--color-accent);
 }

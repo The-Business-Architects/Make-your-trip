@@ -25,11 +25,14 @@ export default function Introduction() {
             connections, and logistics that vary by destination. MakeYourTrip Inc. simplifies
             that process by providing personalized travel assistance tailored to your specific journey.
           </p>
-          <p className={styles.body} style={{ marginTop: 'var(--space-4)' }}>
+          <p className={styles.body}>
             Whether you&apos;re traveling for leisure, business, or with your family,
             we&apos;re here to guide you through the planning process with clarity and care.
             No booking portals. No automated systems. Just real, human assistance.
           </p>
+
+
+
           <Link href="/about" className={`btn btn--secondary ${styles.cta}`} id="intro-learn-more">
             Learn More About Us
             <span className="btn-arrow" aria-hidden="true">→</span>
@@ -40,17 +43,18 @@ export default function Introduction() {
         <div
           className={`reveal-right reveal-image ${styles.imageSide}`}
           ref={imageRef}
-          aria-hidden="true"
         >
           <Image
             src="/images/misc/about-intro.jpg"
             alt="A traveler planning their journey in a premium hotel lounge"
             fill
             style={{ objectFit: 'cover' }}
-            sizes="(max-width: 768px) 100vw, 50vw"
+            sizes="(max-width: 900px) 100vw, 50vw"
             loading="lazy"
           />
           <div className={styles.imageOverlay} aria-hidden="true" />
+
+
         </div>
 
       </div>
