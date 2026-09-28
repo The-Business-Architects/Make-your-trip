@@ -10,7 +10,6 @@
   align-items: center;
   justify-content: flex-start;
   background: radial-gradient(circle at top left, #2968eb 0%, #113db2 100%);
-  overflow: hidden;
   padding: 120px var(--container-pad) 80px;
 }
 
@@ -20,6 +19,7 @@
   inset: 0;
   z-index: 1;
   pointer-events: none;
+  overflow: hidden;
 }
 
 .heroSvg {
