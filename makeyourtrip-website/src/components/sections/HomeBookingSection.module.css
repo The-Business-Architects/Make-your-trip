@@ -1,0 +1,330 @@
+/* ================================================================
+ * Highlighted CTA Section — MakeYourTrip Inc.
+ * Placed immediately after About Us section
+ * Clean, highlighted, distinctive architectural styling matching reference UI
+ * 2x2 grid form on both desktop and mobile
+ * ================================================================ */
+
+.ctaSection {
+  position: relative;
+  background: linear-gradient(180deg, #f0f6ff 0%, #e8f1fd 50%, #f4f8fd 100%);
+  border-top: 1px solid rgba(26, 86, 219, 0.12);
+  border-bottom: 1px solid rgba(26, 86, 219, 0.12);
+  padding: 5rem 0;
+  overflow: hidden;
+}
+
+/* Atmospheric subtle background radial glow */
+.ctaBackgroundGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 750px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(26, 86, 219, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Outer Header above CTA card */
+.outerHeader {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 2.25rem auto;
+  position: relative;
+  z-index: 1;
+}
+
+.cardHeading {
+  font-family: var(--font-serif);
+  font-size: clamp(2.1rem, 3.8vw, 3rem);
+  font-weight: 400;
+  color: var(--color-ink);
+  line-height: 1.15;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.accentText {
+  color: var(--color-primary);
+  font-style: italic;
+}
+
+/* Standout Highlight Card */
+.highlightCard {
+  position: relative;
+  z-index: 1;
+  max-width: 680px;
+  margin: 0 auto;
+  background: #ffffff;
+  border: 1px solid rgba(26, 86, 219, 0.18);
+  border-radius: 28px;
+  padding: 2.5rem 2.5rem;
+  box-shadow: 0 16px 48px rgba(26, 86, 219, 0.10);
+  transition: box-shadow var(--transition-base), border-color var(--transition-base);
+}
+
+.highlightCard:hover {
+  border-color: rgba(26, 86, 219, 0.3);
+  box-shadow: 0 20px 56px rgba(26, 86, 219, 0.14);
+}
+
+.enquireForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* 2x2 Grid: Strictly 2 columns on desktop and mobile */
+.formGrid2x2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem 1.5rem;
+}
+
+.formField {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  position: relative;
+}
+
+.label {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #475569;
+}
+
+.input {
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--font-sans);
+  font-size: 0.94rem;
+  font-weight: 400;
+  color: var(--color-ink);
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.input:focus {
+  background-color: #ffffff;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(26, 86, 219, 0.12);
+}
+
+.inputWithIcon {
+  position: relative;
+}
+
+/* Select Container for Travellers */
+.selectContainer {
+  position: relative;
+}
+
+.selectButton {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-sans);
+  font-size: 0.94rem;
+  font-weight: 400;
+  color: var(--color-ink);
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.selectButton:focus {
+  background-color: #ffffff;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(26, 86, 219, 0.12);
+}
+
+.chevron {
+  font-size: 0.8rem;
+  color: #64748b;
+  transition: transform 0.2s ease;
+}
+
+/* Dropdown Panel */
+.travelerDropdown {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  min-width: 260px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 16px;
+  box-shadow: 0 16px 36px rgba(10, 22, 40, 0.14);
+  padding: 1.25rem;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.counter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.counterInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.counterLabel {
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--color-ink);
+}
+
+.counterSub {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  color: var(--color-slate);
+}
+
+.counterControls {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.counterBtn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: var(--color-ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s ease;
+}
+
+.counterBtn:hover:not(:disabled) {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background-color: rgba(26, 86, 219, 0.05);
+}
+
+.counterBtn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.counterValue {
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--color-ink);
+  min-width: 14px;
+  text-align: center;
+}
+
+.dropdownDoneBtn {
+  align-self: flex-end;
+  padding: 0.35rem 0.85rem;
+  border-radius: 8px;
+  border: 1px solid var(--color-primary);
+  background: var(--color-primary);
+  color: #ffffff;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* Enquire Now Button (Blue pill button exactly like reference) */
+.enquireButton {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: #1a56db;
+  color: #ffffff;
+  font-family: var(--font-sans);
+  font-size: 1.02rem;
+  font-weight: 500;
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 16px rgba(26, 86, 219, 0.28);
+}
+
+.enquireButton:hover {
+  background-color: #1447c0;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 22px rgba(26, 86, 219, 0.35);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .ctaSection {
+    padding: 3.5rem 0;
+  }
+
+  .highlightCard {
+    padding: 1.75rem 1.25rem;
+    border-radius: 20px;
+    margin: 0 0.25rem;
+  }
+
+  .cardHeader {
+    margin-bottom: 1.35rem;
+  }
+
+  /* Form strictly preserves 2x2 grid on mobile */
+  .formGrid2x2 {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.85rem 0.85rem;
+  }
+
+  .label {
+    font-size: 0.75rem;
+  }
+
+  .input,
+  .selectButton {
+    font-size: 0.86rem;
+    padding: 0.7rem 0.75rem;
+    border-radius: 10px;
+  }
+
+  .enquireButton {
+    padding: 0.85rem 1.25rem;
+    font-size: 0.94rem;
+    border-radius: 10px;
+  }
+
+  .travelerDropdown {
+    left: auto;
+    right: 0;
+    width: 250px;
+    min-width: 250px;
+  }
+}

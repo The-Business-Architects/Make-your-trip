@@ -1,0 +1,1013 @@
+/* ================================================================
+ * Admin Dashboard Styles — MakeYourTrip Inc.
+ * Clean, lightweight, simple system fonts
+ * Strict rule: Maximum font-weight is 500 (weights 400 & 500 only)
+ * Moderate, clean paddings without excess spacing
+ * ================================================================ */
+
+.adminWrapper {
+  min-height: 100vh;
+  background-color: #f8fafc;
+  color: #0f172a;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Header ─────────────────────────────────── */
+.header {
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 10px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+@media (min-width: 640px) {
+  .header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
+    gap: 14px;
+  }
+}
+
+.brandWrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .brandWrap {
+    width: auto;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+}
+
+.brandText {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brandTitle {
+  font-size: 15px;
+  font-weight: 500;
+  color: #0f172a;
+  white-space: nowrap;
+}
+
+.crmBadge {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: rgba(26, 86, 219, 0.08);
+  color: #1a56db;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .headerActions {
+    width: auto;
+    justify-content: flex-end;
+  }
+}
+
+.headerActions button {
+  flex: 1;
+}
+
+@media (min-width: 640px) {
+  .headerActions button {
+    flex: initial;
+  }
+}
+
+/* ─── Buttons ────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 7px 13px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+  white-space: nowrap;
+}
+
+.btnPrimary {
+  background: #1a56db;
+  color: #ffffff;
+}
+
+.btnPrimary:hover {
+  background: #1546b3;
+}
+
+.btnOutline {
+  background: #ffffff;
+  border-color: #cbd5e1;
+  color: #334155;
+}
+
+.btnOutline:hover {
+  background: #f1f5f9;
+  border-color: #94a3b8;
+  color: #0f172a;
+}
+
+/* Four Action Buttons with clean colors & icons */
+.btnCall {
+  background: #ffffff;
+  border: 1px solid #0284c7;
+  color: #0284c7;
+}
+
+.btnCall:hover {
+  background: rgba(2, 132, 199, 0.08);
+  border-color: #0284c7;
+}
+
+.btnWhatsapp {
+  background: #ffffff;
+  border: 1px solid #16a34a;
+  color: #16a34a;
+}
+
+.btnWhatsapp:hover {
+  background: rgba(22, 163, 74, 0.08);
+  border-color: #16a34a;
+}
+
+.btnEmail {
+  background: #ffffff;
+  border: 1px solid #7c3aed;
+  color: #7c3aed;
+}
+
+.btnEmail:hover {
+  background: rgba(124, 58, 237, 0.08);
+  border-color: #7c3aed;
+}
+
+.btnActivity {
+  background: #ffffff;
+  border: 1px solid #1a56db;
+  color: #1a56db;
+}
+
+.btnActivity:hover {
+  background: rgba(26, 86, 219, 0.08);
+  border-color: #1a56db;
+}
+
+.btnActivityActive {
+  background: #1a56db;
+  border: 1px solid #1a56db;
+  color: #ffffff;
+}
+
+.btnActivityActive:hover {
+  background: #1546b3;
+}
+
+.btnSm {
+  padding: 6px 11px;
+  font-size: 12.5px;
+  border-radius: 6px;
+}
+
+/* ─── Main Container ─────────────────────────── */
+.container {
+  width: 100%;
+  max-width: 1380px;
+  margin: 0 auto;
+  padding: 12px;
+  flex: 1;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding: 16px 20px;
+  }
+}
+
+/* ─── Desktop Two-Column Layout ──────────────── */
+.desktopLayout {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+/* ─── Panels ─────────────────────────────────── */
+.panel {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+}
+
+.panelToolbar {
+  padding: 10px 14px;
+  border-bottom: 1px solid #eef2f6;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: #ffffff;
+}
+
+@media (min-width: 480px) {
+  .panelToolbar {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.searchInput {
+  flex: 1;
+  padding: 7px 11px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 13px;
+  outline: none;
+  background: #f8fafc;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.searchInput:focus {
+  background: #ffffff;
+  border-color: #1a56db;
+}
+
+.filterSelectWrap {
+  width: 100%;
+}
+
+@media (min-width: 480px) {
+  .filterSelectWrap {
+    width: 160px;
+    flex-shrink: 0;
+  }
+}
+
+/* ─── Inquiry List ───────────────────────────── */
+.inquiryList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow-y: auto;
+}
+
+@media (min-width: 992px) {
+  .inquiryList {
+    max-height: calc(100vh - 140px);
+  }
+}
+
+.inquiryItem {
+  padding: 12px 14px;
+  border-bottom: 1px solid #f1f5f9;
+  cursor: pointer;
+  transition: background-color 0.1s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: #ffffff;
+}
+
+.inquiryItem:hover {
+  background: #f8fafc;
+}
+
+.inquiryItemSelected {
+  background: #f1f6fe;
+  border-left: 3px solid #1a56db;
+}
+
+.itemTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.itemName {
+  font-size: 14px;
+  font-weight: 500;
+  color: #0f172a;
+}
+
+.statusPill {
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 2px 6px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.statusNew { background: #dbeafe; color: #1e40af; }
+.statusContacted { background: #fef3c7; color: #92400e; }
+.statusInProgress { background: #e0e7ff; color: #3730a3; }
+.statusQuoted { background: #f3e8ff; color: #6b21a8; }
+.statusBooked { background: #d1fae5; color: #065f46; }
+.statusCancelled { background: #fee2e2; color: #991b1b; }
+
+.itemRoute {
+  font-size: 12.5px;
+  font-weight: 400;
+  color: #334155;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.itemTypeBadge {
+  background: rgba(26, 86, 219, 0.06);
+  color: #1a56db;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 1px 5px;
+  border-radius: 3px;
+  text-transform: capitalize;
+}
+
+.itemMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11.5px;
+  color: #64748b;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+/* Mobile Lead Card: Next Activity Banner */
+.cardNextActivity {
+  margin-top: 4px;
+  background: #f0f7ff;
+  border: 1px solid #dbeafe;
+  border-left: 3px solid #1a56db;
+  border-radius: 4px;
+  padding: 6px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cardNextActivityHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 10.5px;
+  font-weight: 500;
+  color: #1a56db;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.cardNextActivityDate {
+  font-size: 10.5px;
+  font-weight: 500;
+  color: #0284c7;
+  background: #ffffff;
+  padding: 1px 5px;
+  border-radius: 3px;
+  border: 1px solid #bfdbfe;
+}
+
+.cardNextActivityText {
+  font-size: 12px;
+  color: #1e293b;
+  line-height: 1.35;
+  font-weight: 400;
+}
+
+/* Mobile Lead Card: Action Buttons Bar */
+.cardActionBar {
+  margin-top: 6px;
+  padding-top: 8px;
+  border-top: 1px solid #f1f5f9;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.cardActionBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 6px 4px;
+  font-size: 11.5px;
+  font-weight: 500;
+  border-radius: 6px;
+  text-decoration: none;
+  cursor: pointer;
+  background: #ffffff;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.cardActionBtn svg {
+  flex-shrink: 0;
+}
+
+/* ─── Mobile View Transitions ────────────────── */
+.mobileBackBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 7px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #0f172a;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+/* ──────────────────────────────────────────────
+   LEAD INFORMATION PANEL (Clean, moderate padding, <= 500 font-weight)
+   ────────────────────────────────────────────── */
+
+.detailPanel {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+@media (min-width: 640px) {
+  .detailPanel {
+    padding: 18px 20px;
+    gap: 16px;
+  }
+}
+
+/* Header Row */
+.detailHeaderRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 12px;
+}
+
+.detailHeaderLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.detailTravelerName {
+  font-size: 18px;
+  font-weight: 500;
+  color: #0f172a;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.detailRefWrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.detailRefCode {
+  font-family: inherit;
+  font-size: 11.5px;
+  font-weight: 500;
+  background: #f1f5f9;
+  color: #334155;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.detailDateBadge {
+  font-size: 11.5px;
+  color: #64748b;
+  font-weight: 400;
+}
+
+.detailStatusWrap {
+  min-width: 145px;
+}
+
+/* Action Bar (4 buttons: Call, WhatsApp, Email, Add Activity) */
+.quickActionBar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  background: #f8fafc;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+}
+
+.quickActionBar a,
+.quickActionBar button {
+  flex: 1;
+  text-align: center;
+}
+
+@media (min-width: 520px) {
+  .quickActionBar a,
+  .quickActionBar button {
+    flex: initial;
+  }
+}
+
+/* Inline Activity Form */
+.inlineActivityForm {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.activityTextarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 13px;
+  outline: none;
+  background: #f8fafc;
+  resize: vertical;
+  font-weight: 400;
+  color: #0f172a;
+}
+
+.activityTextarea:focus {
+  background: #ffffff;
+  border-color: #1a56db;
+}
+
+.activityPlanRow {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+@media (min-width: 520px) {
+  .activityPlanRow {
+    flex-direction: row;
+    gap: 12px;
+  }
+}
+
+/* Section Box */
+.infoSectionBox {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sectionHeadingRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 8px;
+}
+
+.sectionHeading {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 11.5px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #1a56db;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sectionHeadingIcon {
+  font-size: 12px;
+}
+
+/* Contact Grid */
+.infoGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px 14px;
+}
+
+@media (min-width: 480px) {
+  .infoGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1100px) {
+  .infoGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.infoCell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.infoCellLabel {
+  font-size: 10.5px;
+  color: #64748b;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.infoCellValue {
+  font-size: 13px;
+  font-weight: 500;
+  color: #0f172a;
+  word-break: break-word;
+}
+
+/* Route & Itinerary */
+.routeBox {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.routeBoxHeader {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #475569;
+  flex-wrap: wrap;
+  gap: 6px;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 6px;
+}
+
+.routePill {
+  font-weight: 500;
+  color: #0f172a;
+}
+
+.legRow {
+  padding: 4px 0;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px;
+  border-bottom: 1px dashed #e2e8f0;
+}
+
+.legRow:last-child {
+  border-bottom: none;
+}
+
+.legCity {
+  font-weight: 500;
+  color: #0f172a;
+}
+
+.legArrow {
+  color: #1a56db;
+  font-weight: 500;
+  margin: 0 4px;
+}
+
+.legDate {
+  color: #475569;
+  font-size: 12px;
+  background: #ffffff;
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid #e2e8f0;
+}
+
+.returnDateNotice {
+  font-size: 12px;
+  color: #334155;
+  background: #ffffff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid #e2e8f0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Requirements Box */
+.requirementsBox {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 13px;
+  color: #334155;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+/* Timeline Notes */
+.notesTimeline {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 160px;
+  overflow-y: auto;
+}
+
+.noteItem {
+  background: #f8fafc;
+  border-left: 3px solid #1a56db;
+  padding: 8px 10px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.noteItemTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #64748b;
+}
+
+.noteAuthor {
+  font-weight: 500;
+  color: #1a56db;
+}
+
+.noteItemText {
+  font-size: 12.5px;
+  color: #0f172a;
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+.addNoteForm {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.noteInput {
+  flex: 1;
+  padding: 7px 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 12.5px;
+  outline: none;
+  background: #f8fafc;
+  font-weight: 400;
+}
+
+.noteInput:focus {
+  background: #ffffff;
+  border-color: #1a56db;
+}
+
+/* ─── Modal (Create Inquiry) ─────────────────── */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+}
+
+.modalCard {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 580px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  padding: 18px;
+}
+
+@media (min-width: 640px) {
+  .modalCard {
+    padding: 22px;
+  }
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+}
+
+.modalTitle {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
+  color: #0f172a;
+}
+
+.modalCloseBtn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #64748b;
+  padding: 2px;
+}
+
+.modalForm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+@media (min-width: 520px) {
+  .formRow {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.formRow3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.formLabel {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: #334155;
+  text-transform: uppercase;
+}
+
+.formInput {
+  padding: 7px 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 13px;
+  outline: none;
+  background: #ffffff;
+  font-weight: 400;
+}
+
+.formInput:focus {
+  border-color: #1a56db;
+}
+
+/* ─── Login Screen ───────────────────────────── */
+.loginContainer {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: #0f172a;
+}
+
+.loginCard {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 30px 24px;
+  width: 100%;
+  max-width: 360px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: center;
+}
+
+.loginHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.loginTitle {
+  font-size: 18px;
+  font-weight: 500;
+  color: #0f172a;
+  margin: 0;
+}
+
+.loginSub {
+  font-size: 12.5px;
+  color: #64748b;
+  margin: 0;
+  font-weight: 400;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+}
+
+.loginError {
+  color: #dc2626;
+  font-size: 12px;
+  background: #fee2e2;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-weight: 400;
+}
+
+.loginFooterNote {
+  font-size: 11px;
+  color: #64748b;
+  font-weight: 400;
+}
+
+/* ─── Toast ──────────────────────────────────── */
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #0f172a;
+  color: #ffffff;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 12.5px;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 300;
+}

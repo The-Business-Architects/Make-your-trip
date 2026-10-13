@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>CRM Dashboard | MakeYourTrip Inc.</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="/logo/MYT-LOGO.jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #1a56db;
+      --primary-hover: #1648be;
+      --primary-soft: rgba(26, 86, 219, 0.08);
+      --ink: #0a1628;
+      --charcoal: #2c3a50;
+      --slate: #5f718a;
+      --border: #e2e8f0;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --success: #059669;
+      --warning: #d97706;
+      --danger: #dc2626;
+      --radius: 12px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+      --shadow: 0 4px 16px rgba(10,22,40,0.06);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg);
+      color: var(--ink);
+      line-height: 1.5;
+      font-size: 14px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Header */
+    .header {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--ink);
+    }
+    .header-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .header-title {
+      font-size: 16px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .badge-crm {
+      font-size: 11px;
+      font-weight: 600;
+      background: var(--primary-soft);
+      color: var(--primary);
+      padding: 2px 8px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: var(--primary-hover); }
+    .btn-outline { background: #fff; border-color: var(--border); color: var(--charcoal); }
+    .btn-outline:hover { background: var(--bg); border-color: #cbd5e1; }
+    .btn-whatsapp { background: #25D366; color: #fff; }
+    .btn-whatsapp:hover { background: #1eb956; }
+    .btn-sm { padding: 5px 10px; font-size: 12px; border-radius: 6px; }
+
+    /* Layout */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Stat Cards */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .stat-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      cursor: pointer;
+      transition: border-color 0.15s;
+    }
+    .stat-card.active { border-color: var(--primary); background: #f0f5ff; }
+    .stat-label { font-size: 12px; color: var(--slate); font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; }
+    .stat-value { font-size: 24px; font-weight: 700; color: var(--ink); }
+
+    /* Main Grid: List + Detail */
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    @media (min-width: 992px) {
+      .main-grid {
+        grid-template-columns: 1.1fr 1fr;
+      }
+    }
+
+    /* Card Panels */
+    .panel {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .panel-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .panel-title {
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    /* Search and filter toolbar */
+    .toolbar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+    .search-input {
+      flex: 1;
+      min-width: 180px;
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 13px;
+      outline: none;
+    }
+    .search-input:focus { border-color: var(--primary); }
+    .status-select {
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 13px;
+      background: #fff;
+      outline: none;
+    }
+
+    /* Inquiry List */
+    .inquiry-list {
+      list-style: none;
+      max-height: calc(100vh - 280px);
+      overflow-y: auto;
+      divide-y: 1px solid var(--border);
+    }
+    .inquiry-item {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: background 0.15s;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .inquiry-item:hover { background: #f8fafc; }
+    .inquiry-item.selected { background: #edf4ff; border-left: 4px solid var(--primary); }
+    
+    .item-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .item-name { font-weight: 700; font-size: 15px; color: var(--ink); }
+    .item-ref { font-size: 11px; font-weight: 600; color: var(--slate); background: var(--bg); padding: 2px 6px; border-radius: 4px; }
+    
+    .item-route {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--charcoal);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .route-badge { background: var(--primary-soft); color: var(--primary); padding: 2px 8px; border-radius: 4px; font-size: 12px; }
+
+    .item-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--slate);
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* Status Pills */
+    .status-pill {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .status-new { background: #dbeafe; color: #1e40af; }
+    .status-contacted { background: #fef3c7; color: #92400e; }
+    .status-in_progress { background: #e0e7ff; color: #3730a3; }
+    .status-quoted { background: #f3e8ff; color: #6b21a8; }
+    .status-booked { background: #d1fae5; color: #065f46; }
+    .status-cancelled { background: #fee2e2; color: #991b1b; }
+
+    /* Detail View */
+    .detail-body {
+      padding: 24px;
+      overflow-y: auto;
+      max-height: calc(100vh - 280px);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .detail-empty {
+      padding: 60px 20px;
+      text-align: center;
+      color: var(--slate);
+    }
+    
+    .detail-section-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--slate);
+      margin-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 6px;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+    }
+    .detail-field {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .detail-label { font-size: 11px; color: var(--slate); text-transform: uppercase; font-weight: 600; }
+    .detail-val { font-size: 14px; font-weight: 600; color: var(--ink); }
+
+    .route-box {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .leg-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4px 0;
+      border-bottom: 1px dashed var(--border);
+    }
+    .leg-row:last-child { border-bottom: none; }
+
+    /* Quick Action Bar */
+    .quick-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      background: var(--bg);
+      padding: 14px 18px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+
+    /* Notes Log */
+    .notes-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      list-style: none;
+    }
+    .note-item {
+      background: var(--bg);
+      padding: 12px 14px;
+      border-radius: 8px;
+      border-left: 3px solid var(--primary);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .note-meta {
+      font-size: 11px;
+      color: var(--slate);
+      display: flex;
+      justify-content: space-between;
+    }
+    .note-text { font-size: 13px; color: var(--charcoal); }
+
+    /* Add Note Form */
+    .add-note-form {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .add-note-input {
+      flex: 1;
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 13px;
+    }
+
+    /* Modal for Create Inquiry */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(10,22,40,0.6);
+      backdrop-filter: blur(4px);
+      z-index: 200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-card {
+      background: #fff;
+      border-radius: var(--radius);
+      width: 100%;
+      max-width: 650px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    }
+    .modal-header {
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .modal-title { font-size: 16px; font-weight: 700; }
+    .modal-close { background: none; border: none; font-size: 20px; cursor: pointer; color: var(--slate); }
+    .modal-body { padding: 24px; display: flex; flex-direction: column; gap: 16px; }
+
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-label { font-size: 12px; font-weight: 600; color: var(--charcoal); }
+    .form-control {
+      padding: 9px 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 13px;
+      outline: none;
+    }
+    .form-control:focus { border-color: var(--primary); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    /* Login Screen */
+    .login-container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: linear-gradient(135deg, #0a1628 0%, #1a365d 100%);
+    }
+    .login-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 36px 32px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 24px 48px rgba(0,0,0,0.3);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      text-align: center;
+    }
+    .login-logo {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin: 0 auto;
+      object-fit: cover;
+    }
+    .login-title { font-size: 20px; font-weight: 700; color: var(--ink); }
+    .login-sub { font-size: 13px; color: var(--slate); }
+
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--ink);
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.2);
+      z-index: 300;
+      display: none;
+      animation: fadeIn 0.2s ease;
+    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-title span { display: none; }
+      .container { padding: 12px; }
+      .detail-body { max-height: none; }
+      .inquiry-list { max-height: 400px; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Auth State: Login View -->
+  <div id="login-view" class="login-container">
+    <div class="login-card">
+      <img src="/logo/MYT-LOGO.jpeg" alt="MakeYourTrip Inc." class="login-logo">
+      <div>
+        <h1 class="login-title">MakeYourTrip CRM</h1>
+        <p class="login-sub">Sign in to manage traveler leads & inquiries</p>
+      </div>
+      <form id="login-form" onsubmit="handleLogin(event)" style="display:flex; flex-direction:column; gap:14px; text-align:left;">
+        <div class="form-group">
+          <label class="form-label">Username</label>
+          <input type="text" id="login-username" class="form-control" placeholder="admin" required value="admin">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input type="password" id="login-password" class="form-control" placeholder="••••••••" required>
+        </div>
+        <div id="login-error" style="color:var(--danger); font-size:12px; display:none;"></div>
+        <button type="submit" class="btn btn-primary" style="padding:12px; margin-top:6px;">Sign In</button>
+      </form>
+      <div style="font-size:11px; color:var(--slate);">
+        Default password is set in <code>api/config.php</code>
+      </div>
+    </div>
+  </div>
+
+  <!-- Authenticated App View -->
+  <div id="app-view" style="display:none;">
+    
+    <!-- Header -->
+    <header class="header">
+      <a href="/admin/" class="header-brand">
+        <img src="/logo/MYT-LOGO.jpeg" alt="Logo" class="header-logo">
+        <div class="header-title">
+          <span>MakeYourTrip Inc.</span>
+          <span class="badge-crm">Travel CRM</span>
+        </div>
+      </a>
+      <div class="header-actions">
+        <button class="btn btn-primary btn-sm" onclick="openCreateModal()">+ Create Inquiry</button>
+        <button class="btn btn-outline btn-sm" onclick="refreshInquiries()">↻ Refresh</button>
+        <button class="btn btn-outline btn-sm" onclick="handleLogout()">Sign Out</button>
+      </div>
+    </header>
+
+    <div class="container">
+      <!-- Stat Strip -->
+      <div class="stats-grid" id="stats-container">
+        <div class="stat-card active" onclick="filterByStatus('all')">
+          <span class="stat-label">Total Inquiries</span>
+          <span class="stat-value" id="stat-total">0</span>
+        </div>
+        <div class="stat-card" onclick="filterByStatus('new')">
+          <span class="stat-label">New Leads</span>
+          <span class="stat-value" id="stat-new" style="color:#1e40af;">0</span>
+        </div>
+        <div class="stat-card" onclick="filterByStatus('contacted')">
+          <span class="stat-label">Contacted</span>
+          <span class="stat-value" id="stat-contacted" style="color:#92400e;">0</span>
+        </div>
+        <div class="stat-card" onclick="filterByStatus('quoted')">
+          <span class="stat-label">Quoted</span>
+          <span class="stat-value" id="stat-quoted" style="color:#6b21a8;">0</span>
+        </div>
+        <div class="stat-card" onclick="filterByStatus('booked')">
+          <span class="stat-label">Booked</span>
+          <span class="stat-value" id="stat-booked" style="color:#065f46;">0</span>
+        </div>
+      </div>
+
+      <!-- Main Layout -->
+      <div class="main-grid">
+        
+        <!-- Left Column: Inquiries Feed -->
+        <div class="panel">
+          <div class="panel-header">
+            <div class="toolbar">
+              <input type="text" id="search-input" class="search-input" placeholder="Search name, phone, email, ref..." oninput="debounceSearch()">
+              <select id="status-filter" class="status-select" onchange="filterByStatus(this.value)">
+                <option value="all">All Statuses</option>
+                <option value="new">New</option>
+                <option value="contacted">Contacted</option>
+                <option value="in_progress">In Progress</option>
+                <option value="quoted">Quoted</option>
+                <option value="booked">Booked</option>
+                <option value="cancelled">Cancelled</option>
+              </select>
+            </div>
+          </div>
+          <ul class="inquiry-list" id="inquiry-list">
+            <li style="padding:40px; text-align:center; color:var(--slate);">Loading inquiries...</li>
+          </ul>
+        </div>
+
+        <!-- Right Column: Detail & Activity View -->
+        <div class="panel" id="detail-panel">
+          <div class="panel-header">
+            <span class="panel-title" id="detail-title">Inquiry Details</span>
+            <div id="detail-header-actions" style="display:none;">
+              <select id="update-status-select" class="status-select" onchange="updateSelectedStatus(this.value)">
+                <option value="new">Status: New</option>
+                <option value="contacted">Status: Contacted</option>
+                <option value="in_progress">Status: In Progress</option>
+                <option value="quoted">Status: Quoted</option>
+                <option value="booked">Status: Booked</option>
+                <option value="cancelled">Status: Cancelled</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="detail-content" class="detail-body">
+            <div class="detail-empty">Select an inquiry from the left to view traveler details, flight routes, and activity notes.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Create Inquiry Modal (Admin Form) -->
+  <div class="modal-overlay" id="create-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">Create New Travel Inquiry</h3>
+        <button class="modal-close" onclick="closeCreateModal()">✕</button>
+      </div>
+      <form id="create-form" onsubmit="handleCreateInquiry(event)" class="modal-body">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Traveler Full Name *</label>
+            <input type="text" id="create-name" class="form-control" required placeholder="e.g. John Smith">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email Address *</label>
+            <input type="email" id="create-email" class="form-control" required placeholder="e.g. john@example.com">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Phone / WhatsApp Number *</label>
+            <input type="tel" id="create-phone" class="form-control" required placeholder="e.g. +1 555 123 4567">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Country of Residence</label>
+            <input type="text" id="create-country" class="form-control" placeholder="e.g. United States">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Journey Type</label>
+            <select id="create-journey" class="form-control" onchange="toggleReturnDateField(this.value)">
+              <option value="one-way">One Way</option>
+              <option value="return">Return</option>
+              <option value="multi-destination">Multi-Destination</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Travel Class</label>
+            <select id="create-class" class="form-control">
+              <option value="economy">Economy</option>
+              <option value="premium-economy">Premium Economy</option>
+              <option value="business">Business</option>
+              <option value="first">First</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Departure City (From)</label>
+            <input type="text" id="create-from" class="form-control" required placeholder="e.g. New York (JFK)">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Destination City (To)</label>
+            <input type="text" id="create-to" class="form-control" required placeholder="e.g. Tokyo (NRT)">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Departure Date</label>
+            <input type="date" id="create-date" class="form-control" required>
+          </div>
+          <div class="form-group" id="return-date-group" style="display:none;">
+            <label class="form-label">Return Date</label>
+            <input type="date" id="create-return-date" class="form-control">
+          </div>
+        </div>
+
+        <div class="form-row" style="grid-template-columns: repeat(3, 1fr);">
+          <div class="form-group">
+            <label class="form-label">Adults (12+)</label>
+            <input type="number" id="create-adults" class="form-control" min="1" max="9" value="1">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Children (2-11)</label>
+            <input type="number" id="create-children" class="form-control" min="0" max="8" value="0">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Infants (<2)</label>
+            <input type="number" id="create-infants" class="form-control" min="0" max="4" value="0">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Special Requirements / Notes</label>
+          <textarea id="create-requirements" class="form-control" rows="3" placeholder="Specific airline preferences, dates flexibility, hotel advice, etc."></textarea>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:8px;">
+          <button type="button" class="btn btn-outline" onclick="closeCreateModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Inquiry to CRM</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast"></div>
+
+  <script>
+    const API_BASE = '/api';
+    let currentInquiries = [];
+    let selectedInquiry = null;
+    let currentFilter = 'all';
+    let searchTimeout = null;
+
+    // Check token on load
+    window.addEventListener('DOMContentLoaded', () => {
+      const token = localStorage.getItem('myt_crm_token');
+      if (token) {
+        showApp();
+      } else {
+        showLogin();
+      }
+    });
+
+    function showLogin() {
+      document.getElementById('login-view').style.display = 'flex';
+      document.getElementById('app-view').style.display = 'none';
+    }
+
+    function showApp() {
+      document.getElementById('login-view').style.display = 'none';
+      document.getElementById('app-view').style.display = 'block';
+      refreshInquiries();
+    }
+
+    async function handleLogin(e) {
+      e.preventDefault();
+      const username = document.getElementById('login-username').value;
+      const password = document.getElementById('login-password').value;
+      const errBox = document.getElementById('login-error');
+      errBox.style.display = 'none';
+
+      try {
+        const res = await fetch(`${API_BASE}/auth.php`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+        const data = await res.json();
+        if (data.success && data.token) {
+          localStorage.setItem('myt_crm_token', data.token);
+          showApp();
+        } else {
+          errBox.textContent = data.error || 'Invalid credentials';
+          errBox.style.display = 'block';
+        }
+      } catch (err) {
+        errBox.textContent = 'Server connection error. Ensure api/auth.php is uploaded.';
+        errBox.style.display = 'block';
+      }
+    }
+
+    function handleLogout() {
+      localStorage.removeItem('myt_crm_token');
+      showLogin();
+    }
+
+    async function refreshInquiries() {
+      const token = localStorage.getItem('myt_crm_token');
+      if (!token) return showLogin();
+
+      const search = document.getElementById('search-input')?.value || '';
+      try {
+        const res = await fetch(`${API_BASE}/inquiries.php?status=${currentFilter}&search=${encodeURIComponent(search)}`, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (res.status === 401) {
+          handleLogout();
+          return;
+        }
+        const result = await res.json();
+        if (result.success) {
+          currentInquiries = result.data || [];
+          renderStats(result.counts || {});
+          renderInquiryList(currentInquiries);
+          if (selectedInquiry) {
+            const updated = currentInquiries.find(i => i.id === selectedInquiry.id);
+            if (updated) selectInquiry(updated.id);
+          }
+        }
+      } catch (err) {
+        console.error('Failed to load inquiries', err);
+      }
+    }
+
+    function renderStats(counts) {
+      let total = 0;
+      for (const k in counts) total += counts[k];
+      document.getElementById('stat-total').textContent = total;
+      document.getElementById('stat-new').textContent = counts['new'] || 0;
+      document.getElementById('stat-contacted').textContent = counts['contacted'] || 0;
+      document.getElementById('stat-quoted').textContent = counts['quoted'] || 0;
+      document.getElementById('stat-booked').textContent = counts['booked'] || 0;
+    }
+
+    function filterByStatus(st) {
+      currentFilter = st;
+      document.getElementById('status-filter').value = st;
+      document.querySelectorAll('.stat-card').forEach(c => c.classList.remove('active'));
+      refreshInquiries();
+    }
+
+    function debounceSearch() {
+      clearTimeout(searchTimeout);
+      searchTimeout = setTimeout(() => refreshInquiries(), 300);
+    }
+
+    function renderInquiryList(items) {
+      const listEl = document.getElementById('inquiry-list');
+      if (!items || items.length === 0) {
+        listEl.innerHTML = '<li style="padding:40px; text-align:center; color:var(--slate);">No inquiries found.</li>';
+        return;
+      }
+
+      listEl.innerHTML = items.map(item => {
+        const leg = item.legs && item.legs[0] ? item.legs[0] : { from: 'N/A', to: 'N/A' };
+        const isSelected = selectedInquiry && selectedInquiry.id === item.id;
+        const dateStr = item.created_at ? new Date(item.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour:'2-digit', minute:'2-digit' }) : '';
+        return `
+          <li class="inquiry-item ${isSelected ? 'selected' : ''}" onclick="selectInquiry(${item.id})">
+            <div class="item-top">
+              <span class="item-name">${escapeHtml(item.full_name)}</span>
+              <span class="status-pill status-${item.status}">${item.status.replace('_', ' ')}</span>
+            </div>
+            <div class="item-route">
+              <span class="route-badge">${escapeHtml(item.journey_type)}</span>
+              <span>${escapeHtml(leg.from)} → ${escapeHtml(leg.to)}</span>
+            </div>
+            <div class="item-meta">
+              <span>${escapeHtml(item.phone)}</span>
+              <span>${dateStr}</span>
+            </div>
+          </li>
+        `;
+      }).join('');
+    }
+
+    async function selectInquiry(id) {
+      const token = localStorage.getItem('myt_crm_token');
+      try {
+        const res = await fetch(`${API_BASE}/inquiries.php?id=${id}`, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        const resData = await res.json();
+        if (resData.success && resData.data) {
+          selectedInquiry = resData.data;
+          renderInquiryDetail(selectedInquiry);
+          // Highlight list item
+          document.querySelectorAll('.inquiry-item').forEach(el => el.classList.remove('selected'));
+          renderInquiryList(currentInquiries);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    function renderInquiryDetail(item) {
+      const detailEl = document.getElementById('detail-content');
+      const detailHeaderActions = document.getElementById('detail-header-actions');
+      const updateStatusSelect = document.getElementById('update-status-select');
+
+      detailHeaderActions.style.display = 'block';
+      updateStatusSelect.value = item.status;
+
+      // Phone formatting for WhatsApp link
+      const cleanPhone = (item.phone || '').replace(/[^0-9]/g, '');
+      const waLink = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(`Hi ${item.full_name}, thank you for contacting MakeYourTrip Inc. regarding your trip. How can I assist you today?`)}`;
+      const mailtoLink = `mailto:${item.email}?subject=${encodeURIComponent(`MakeYourTrip Inc. — Your Trip Inquiry (${item.reference_code})`)}`;
+
+      const legsList = (item.legs || []).map((l, idx) => `
+        <div class="leg-row">
+          <div>
+            <strong>Leg ${idx+1}:</strong> ${escapeHtml(l.from)} → ${escapeHtml(l.to)}
+          </div>
+          <div style="color:var(--slate); font-size:12px;">
+            ${escapeHtml(l.date)}
+          </div>
+        </div>
+      `).join('');
+
+      const notesHtml = (item.notes || []).map(n => `
+        <li class="note-item">
+          <div class="note-meta">
+            <strong>${escapeHtml(n.admin_name)}</strong>
+            <span>${n.created_at || ''}</span>
+          </div>
+          <div class="note-text">${escapeHtml(n.note)}</div>
+        </li>
+      `).join('');
+
+      detailEl.innerHTML = `
+        <!-- Quick Action Bar -->
+        <div class="quick-actions">
+          <a href="${waLink}" target="_blank" class="btn btn-whatsapp btn-sm">
+            💬 WhatsApp Traveler
+          </a>
+          <a href="tel:${item.phone}" class="btn btn-outline btn-sm">
+            📞 Call Phone
+          </a>
+          <a href="${mailtoLink}" class="btn btn-outline btn-sm">
+            ✉️ Email Inquiry
+          </a>
+        </div>
+
+        <!-- Traveler Profile -->
+        <div>
+          <div class="detail-section-title">Traveler Contact</div>
+          <div class="detail-grid">
+            <div class="detail-field">
+              <span class="detail-label">Full Name</span>
+              <span class="detail-val">${escapeHtml(item.full_name)}</span>
+            </div>
+            <div class="detail-field">
+              <span class="detail-label">Reference Code</span>
+              <span class="detail-val">${escapeHtml(item.reference_code)}</span>
+            </div>
+            <div class="detail-field">
+              <span class="detail-label">Phone</span>
+              <span class="detail-val">${escapeHtml(item.phone)}</span>
+            </div>
+            <div class="detail-field">
+              <span class="detail-label">Email</span>
+              <span class="detail-val"><a href="${mailtoLink}" style="color:var(--primary);">${escapeHtml(item.email)}</a></span>
+            </div>
+            <div class="detail-field">
+              <span class="detail-label">Country</span>
+              <span class="detail-val">${escapeHtml(item.country || 'N/A')}</span>
+            </div>
+            <div class="detail-field">
+              <span class="detail-label">Lead Source</span>
+              <span class="detail-val" style="text-transform:capitalize;">${escapeHtml(item.source || 'website_form')}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Journey & Flight Plan -->
+        <div>
+          <div class="detail-section-title">Requested Route & Passenger Details</div>
+          <div class="route-box">
+            <div style="display:flex; justify-content:space-between; font-size:12px; color:var(--slate);">
+              <span><strong>Type:</strong> ${escapeHtml(item.journey_type)}</span>
+              <span><strong>Class:</strong> ${escapeHtml(item.travel_class)}</span>
+              <span><strong>Passengers:</strong> ${item.adults} Adults${item.children ? `, ${item.children} Child` : ''}${item.infants ? `, ${item.infants} Infant` : ''}</span>
+            </div>
+            <div style="margin-top:6px;">
+              ${legsList}
+            </div>
+            ${item.return_date ? `<div style="font-size:12px; margin-top:4px; color:var(--slate);"><strong>Return Date:</strong> ${escapeHtml(item.return_date)}</div>` : ''}
+          </div>
+        </div>
+
+        <!-- Requirements -->
+        ${item.requirements ? `
+          <div>
+            <div class="detail-section-title">Special Notes & Requirements</div>
+            <div style="background:var(--bg); padding:12px 14px; border-radius:8px; font-size:13px; color:var(--charcoal);">
+              ${escapeHtml(item.requirements)}
+            </div>
+          </div>
+        ` : ''}
+
+        <!-- CRM Activity Log -->
+        <div>
+          <div class="detail-section-title">Activity Notes & Status History</div>
+          <ul class="notes-list">
+            ${notesHtml || '<li style="color:var(--slate); font-size:12px;">No activity logged yet.</li>'}
+          </ul>
+          <form onsubmit="handleAddNote(event)" class="add-note-form">
+            <input type="text" id="new-note-input" class="add-note-input" placeholder="Type internal note (e.g. Sent itinerary PDF via WhatsApp)..." required>
+            <button type="submit" class="btn btn-primary btn-sm">Add Note</button>
+          </form>
+        </div>
+      `;
+    }
+
+    async function updateSelectedStatus(newStatus) {
+      if (!selectedInquiry) return;
+      const token = localStorage.getItem('myt_crm_token');
+      try {
+        const res = await fetch(`${API_BASE}/inquiries.php`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({
+            id: selectedInquiry.id,
+            status: newStatus
+          })
+        });
+        const resData = await res.json();
+        if (resData.success) {
+          showToast(`Status updated to ${newStatus.toUpperCase()}`);
+          selectedInquiry.status = newStatus;
+          selectInquiry(selectedInquiry.id);
+          refreshInquiries();
+        }
+      } catch (err) {
+        showToast('Failed to update status');
+      }
+    }
+
+    async function handleAddNote(e) {
+      e.preventDefault();
+      if (!selectedInquiry) return;
+      const noteInput = document.getElementById('new-note-input');
+      const noteText = noteInput.value.trim();
+      if (!noteText) return;
+
+      const token = localStorage.getItem('myt_crm_token');
+      try {
+        const res = await fetch(`${API_BASE}/inquiries.php`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({
+            id: selectedInquiry.id,
+            note: noteText
+          })
+        });
+        const resData = await res.json();
+        if (resData.success) {
+          noteInput.value = '';
+          selectInquiry(selectedInquiry.id);
+          showToast('Note added');
+        }
+      } catch (err) {
+        showToast('Failed to add note');
+      }
+    }
+
+    // Create Modal Handlers
+    function openCreateModal() {
+      document.getElementById('create-modal').classList.add('open');
+    }
+    function closeCreateModal() {
+      document.getElementById('create-modal').classList.remove('open');
+    }
+    function toggleReturnDateField(journey) {
+      document.getElementById('return-date-group').style.display = journey === 'return' ? 'flex' : 'none';
+    }
+
+    async function handleCreateInquiry(e) {
+      e.preventDefault();
+      const token = localStorage.getItem('myt_crm_token');
+      
+      const payload = {
+        fullName: document.getElementById('create-name').value.trim(),
+        email: document.getElementById('create-email').value.trim(),
+        phone: document.getElementById('create-phone').value.trim(),
+        country: document.getElementById('create-country').value.trim() || 'Unspecified',
+        journeyType: document.getElementById('create-journey').value,
+        travelClass: document.getElementById('create-class').value,
+        adults: parseInt(document.getElementById('create-adults').value) || 1,
+        children: parseInt(document.getElementById('create-children').value) || 0,
+        infants: parseInt(document.getElementById('create-infants').value) || 0,
+        returnDate: document.getElementById('create-return-date').value || null,
+        requirements: document.getElementById('create-requirements').value.trim(),
+        legs: [
+          {
+            from: document.getElementById('create-from').value.trim(),
+            to: document.getElementById('create-to').value.trim(),
+            date: document.getElementById('create-date').value
+          }
+        ],
+        source: 'admin_created'
+      };
+
+      try {
+        const res = await fetch(`${API_BASE}/inquiries.php`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (data.success) {
+          showToast('Inquiry created successfully!');
+          closeCreateModal();
+          document.getElementById('create-form').reset();
+          refreshInquiries();
+          if (data.id) selectInquiry(data.id);
+        } else {
+          showToast(data.error || 'Failed to create inquiry');
+        }
+      } catch (err) {
+        showToast('Error connecting to API');
+      }
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.style.display = 'block';
+      setTimeout(() => { t.style.display = 'none'; }, 3000);
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+  </script>
+</body>
+</html>

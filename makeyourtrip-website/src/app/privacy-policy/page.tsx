@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import PageHero from '@/components/ui/PageHero'
@@ -31,8 +32,8 @@ const sections = [
     body: 'You have the right to request access to, correction of, or deletion of your personal information. To exercise these rights, contact us at info@makeyourtripinc.com.',
   },
   {
-    heading: '6. Contact',
-    body: 'For privacy-related questions, please contact us at info@makeyourtripinc.com.',
+    heading: '6. Contact & Registered Office',
+    body: 'For privacy-related questions or data requests, please contact us at info@makeyourtripinc.com or write to our registered office: MakeYourTrip Inc., 2108 N ST #7740, Sacramento, CA, 95816, USA.',
   },
 ]
 
@@ -41,7 +42,17 @@ export default function PrivacyPolicyPage() {
     <>
       <Header />
       <main id="main-content">
-        <PageHero eyebrow="Legal" title="Privacy Policy" />
+        <PageHero
+          breadcrumbs={
+            <>
+              <Link href="/">Home</Link>
+              <span>/</span>
+              <span>Privacy Policy</span>
+            </>
+          }
+          eyebrow="Legal"
+          title="Privacy Policy"
+        />
         <section className={`section ${styles.legalSection}`} aria-label="Privacy policy content">
           <div className="container container--narrow">
             <p className={styles.lastUpdated}>

@@ -1,11 +1,17 @@
-/* About page styles */
+/* ================================================================
+ * About Page Styles — MakeYourTrip Inc.
+ * Strict Constraint: font-weight <= 500 throughout, no gold text
+ * ================================================================ */
 
-.storySection {}
+.storySection {
+  background-color: #ffffff;
+  padding: clamp(3.5rem, 6vw, 5.5rem) 0;
+}
 
 .storyGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--space-16);
+  gap: var(--space-12);
   align-items: center;
 }
 
@@ -17,26 +23,35 @@
 
 .storyHeading {
   font-family: var(--font-serif);
-  font-size: var(--text-5xl);
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 400;
   color: var(--color-ink);
-  line-height: var(--leading-tight);
+  line-height: 1.25;
   letter-spacing: var(--tracking-tight);
+}
+
+.storyHeading em {
+  font-style: italic;
+  color: var(--color-primary);
 }
 
 .bodyText {
   font-family: var(--font-sans);
   font-size: var(--text-base);
+  font-weight: 400;
   color: var(--color-charcoal);
   line-height: 1.75;
   max-width: none;
+  margin: 0;
 }
 
 .storyImgWrap {
   position: relative;
-  height: 540px;
+  height: 520px;
   border-radius: var(--radius-xl);
   overflow: hidden;
   box-shadow: var(--shadow-xl);
+  border: 1px solid rgba(26, 86, 219, 0.12);
 }
 
 .storyImgOverlay {
@@ -44,34 +59,188 @@
   inset: 0;
   background: linear-gradient(
     to top,
-    rgba(4, 14, 52, 0.35) 0%,
+    rgba(10, 22, 40, 0.4) 0%,
     transparent 60%
   );
   border-radius: inherit;
 }
 
-/* Values */
+/* ─────────────────────────────────────────────────────────────
+ * Comparison / Difference Section
+ * ───────────────────────────────────────────────────────────── */
+
+.diffSection {
+  background-color: var(--color-ivory-warm);
+  padding: clamp(3.5rem, 6vw, 5.5rem) 0;
+  border-top: 1px solid var(--color-stone-soft);
+  border-bottom: 1px solid var(--color-stone-soft);
+}
+
+.diffHead {
+  max-width: 640px;
+  margin-bottom: var(--space-10);
+}
+
+.diffHeading {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 3.2vw, 2.5rem);
+  font-weight: 400;
+  color: var(--color-ink);
+  line-height: 1.25;
+  letter-spacing: var(--tracking-tight);
+  margin-bottom: var(--space-3);
+}
+
+.diffHeading em {
+  font-style: italic;
+  color: var(--color-primary);
+}
+
+.diffSubtitle {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: 400;
+  color: var(--color-slate);
+  line-height: 1.65;
+}
+
+.diffGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+}
+
+.diffCard {
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  box-shadow: var(--shadow-sm);
+}
+
+.diffCardUs {
+  border-color: rgba(26, 86, 219, 0.3);
+  box-shadow: 0 4px 20px rgba(26, 86, 219, 0.08);
+  position: relative;
+}
+
+.diffCardUs::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--color-blue-gradient);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+}
+
+.diffCardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--color-stone-soft);
+  padding-bottom: var(--space-4);
+}
+
+.diffCardTitle {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--color-ink);
+  margin: 0;
+}
+
+.diffCardTag {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+}
+
+.tagOther {
+  background: #f1f5f9;
+  color: var(--color-slate);
+}
+
+.tagUs {
+  background: rgba(26, 86, 219, 0.1);
+  color: var(--color-primary);
+}
+
+.diffList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.diffItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  font-weight: 400;
+  color: var(--color-charcoal);
+  line-height: 1.55;
+}
+
+.diffBulletCross {
+  color: #94a3b8;
+  font-weight: 500;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.diffBulletCheck {
+  color: var(--color-primary);
+  font-weight: 500;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ─────────────────────────────────────────────────────────────
+ * Values Section
+ * ───────────────────────────────────────────────────────────── */
+
 .valuesSection {
-  background-color: var(--color-bg-secondary, #f8f9fb);
+  background-color: #ffffff;
+  padding: clamp(3.5rem, 6vw, 5.5rem) 0;
 }
 
 .valuesHead {
-  margin-bottom: var(--space-14);
-  max-width: 52ch;
+  margin-bottom: var(--space-10);
+  max-width: 600px;
 }
 
 .valuesHeading {
   font-family: var(--font-serif);
-  font-size: var(--text-5xl);
+  font-size: clamp(2rem, 3.2vw, 2.5rem);
+  font-weight: 400;
   color: var(--color-ink);
-  line-height: var(--leading-tight);
+  line-height: 1.25;
   letter-spacing: var(--tracking-tight);
   margin-bottom: var(--space-3);
+}
+
+.valuesHeading em {
+  font-style: italic;
+  color: var(--color-primary);
 }
 
 .valuesSubtitle {
   font-family: var(--font-sans);
   font-size: var(--text-base);
+  font-weight: 400;
   color: var(--color-slate);
   line-height: var(--leading-relaxed);
   max-width: none;
@@ -80,19 +249,19 @@
 .valuesGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-6);
+  gap: var(--space-5);
 }
 
 .valueCard {
   background: var(--color-bg-primary);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-xl);
-  padding: var(--space-8) var(--space-6);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
   position: relative;
-  transition: box-shadow var(--transition-base), transform var(--transition-base);
+  transition: all var(--transition-base);
   overflow: hidden;
 }
 
@@ -103,14 +272,15 @@
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, #c9a84c, rgba(201, 168, 76, 0.2));
+  background: var(--color-blue-gradient);
   opacity: 0;
   transition: opacity var(--transition-base);
 }
 
 .valueCard:hover {
   transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
+  border-color: rgba(26, 86, 219, 0.25);
+  box-shadow: var(--shadow-md);
 }
 
 .valueCard:hover::before {
@@ -118,43 +288,61 @@
 }
 
 .valueIndex {
-  font-family: var(--font-serif);
-  font-size: var(--text-4xl);
-  color: var(--color-border);
-  font-style: italic;
-  line-height: 1;
-  margin-bottom: var(--space-2);
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  color: var(--color-primary);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .valueIcon {
-  font-size: var(--text-lg);
-  color: #c9a84c;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: rgba(26, 86, 219, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
 }
 
 .valueTitle {
   font-family: var(--font-serif);
-  font-size: var(--text-2xl);
+  font-size: 1.25rem;
+  font-weight: 500;
   color: var(--color-ink);
-  font-style: italic;
+  margin: 0;
 }
 
 .valueDesc {
   font-family: var(--font-sans);
-  font-size: var(--text-sm);
+  font-size: 0.88rem;
+  font-weight: 400;
   color: var(--color-slate);
-  line-height: 1.7;
+  line-height: 1.65;
   max-width: none;
+  margin: 0;
 }
 
 /* Responsive */
-@media (max-width: 900px) {
+@media (max-width: 960px) {
   .storyGrid {
     grid-template-columns: 1fr;
-    gap: var(--space-10);
+    gap: var(--space-8);
   }
 
   .storyImgWrap {
-    height: 360px;
+    order: -1;
+    height: 380px;
+  }
+
+  .storyText {
+    order: 1;
+  }
+
+  .diffGrid {
+    grid-template-columns: 1fr;
   }
 
   .valuesGrid {
@@ -162,8 +350,16 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 640px) {
   .valuesGrid {
     grid-template-columns: 1fr;
+  }
+
+  .diffCard {
+    padding: var(--space-6);
+  }
+
+  .storyImgWrap {
+    height: 300px;
   }
 }

@@ -1,0 +1,509 @@
+.page {
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* ============================================================
+   COMMON SECTION TYPOGRAPHY (SMOOTH & MODERN)
+   All font-weight capped at 500 across entire website
+   ============================================================ */
+.sectionHeading {
+  font-family: var(--font-sans);
+  font-size: clamp(1.85rem, 3.2vw, 2.5rem);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+  color: var(--color-ink);
+  margin-bottom: 0.85rem;
+  text-wrap: balance;
+}
+
+.sectionSubtitle {
+  font-family: var(--font-sans);
+  font-size: clamp(0.98rem, 1.2vw, 1.08rem);
+  font-weight: 400;
+  line-height: 1.68;
+  color: var(--color-slate);
+  max-width: 760px;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.paragraph {
+  font-family: var(--font-sans);
+  font-size: 1.04rem;
+  font-weight: 400;
+  line-height: 1.8;
+  color: #334155;
+  margin-bottom: 1.35rem;
+}
+
+.sectionHeader {
+  text-align: left;
+  max-width: 760px;
+  margin: 0 0 clamp(2.5rem, 4vw, 3.5rem);
+}
+
+.sectionHeader .sectionSubtitle {
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .sectionHeader {
+    margin-bottom: 2rem;
+  }
+}
+
+/* ============================================================
+   1. OVERVIEW SECTION (BALANCED 2-COLUMN GRID)
+   ============================================================ */
+.overviewSection {
+  padding: clamp(5.5rem, 8vw, 7rem) 0;
+  background-color: var(--color-bg-primary);
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .overviewSection {
+    padding: clamp(3.75rem, 6vw, 4.75rem) 0;
+  }
+}
+
+.overviewGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: 3.5rem;
+  align-items: start;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+@media (max-width: 880px) {
+  .overviewGrid {
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
+  }
+}
+
+.overviewLeft {
+  display: flex;
+  flex-direction: column;
+}
+
+.overviewRight {
+  display: flex;
+  flex-direction: column;
+}
+
+.tagGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 1.75rem;
+}
+
+.tag {
+  background-color: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: #1e293b;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.4rem 0.9rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.tag:hover {
+  background-color: #e2e8f0;
+  border-color: #cbd5e1;
+}
+
+/* ============================================================
+   2. HIGHLIGHT PLACES & ATTRACTIONS WITH IMAGES
+   ============================================================ */
+.highlightsSection {
+  padding: clamp(6rem, 8.5vw, 7.5rem) 0;
+  background-color: #f8fafc;
+  border-top: 1px solid var(--color-stone);
+  border-bottom: 1px solid var(--color-stone);
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .highlightsSection {
+    padding: clamp(4rem, 6vw, 5rem) 0;
+  }
+}
+
+.highlightsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1.75rem, 3vw, 2.5rem);
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .highlightsGrid {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+  }
+}
+
+.highlightRevealItem {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.highlightCard {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.highlightCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+  border-color: #cbd5e1;
+}
+
+.highlightImageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background-color: #0f172a;
+}
+
+@media (max-width: 540px) {
+  .highlightImageWrapper {
+    aspect-ratio: 16 / 10;
+  }
+}
+
+.highlightImg {
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.highlightCard:hover .highlightImg {
+  transform: scale(1.05);
+}
+
+.highlightContent {
+  padding: clamp(1.5rem, 2vw, 1.85rem);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 540px) {
+  .highlightContent {
+    padding: 1.25rem 1.25rem 1.4rem;
+  }
+}
+
+.highlightTitle {
+  font-family: var(--font-sans);
+  font-size: 1.28rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+.highlightDesc {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: 1.65;
+  color: #475569;
+  margin: 0;
+}
+
+/* ============================================================
+   3. SAMPLE ITINERARY SECTION (PURE DESTINATION ROUTE)
+   ============================================================ */
+.itinerarySection {
+  padding: clamp(6rem, 8.5vw, 7.5rem) 0;
+  background-color: var(--color-bg-primary);
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .itinerarySection {
+    padding: clamp(4rem, 6vw, 5rem) 0;
+  }
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+.dayCard {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: clamp(1.5rem, 2.5vw, 2rem) clamp(1.5rem, 2.5vw, 2.25rem);
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 1.75rem;
+  align-items: start;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.03);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dayCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+}
+
+@media (max-width: 640px) {
+  .dayCard {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    padding: 1.35rem;
+  }
+}
+
+.dayBadgeCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.dayNumber {
+  display: inline-block;
+  background-color: #0f2942;
+  color: #ffffff;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.82rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 8px;
+  text-align: center;
+  letter-spacing: 0.04em;
+  width: fit-content;
+}
+
+.dayContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.dayTitle {
+  font-family: var(--font-sans);
+  font-size: 1.18rem;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  color: var(--color-ink);
+  margin-bottom: 0.45rem;
+  line-height: 1.35;
+}
+
+.dayDesc {
+  font-family: var(--font-sans);
+  font-size: 0.96rem;
+  font-weight: 400;
+  line-height: 1.7;
+  color: #334155;
+  margin: 0;
+}
+
+.itineraryDisclaimer {
+  text-align: center;
+  margin-top: 3rem;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--color-slate);
+  font-style: italic;
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ============================================================
+   4. DEDICATED BOTTOM INQUIRE CTA
+   ============================================================ */
+.bottomCta {
+  padding: clamp(6rem, 8.5vw, 8rem) 0;
+  background: linear-gradient(135deg, #091728 0%, #0d2745 60%, #103259 100%);
+  color: #ffffff;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .bottomCta {
+    padding: clamp(4.25rem, 6.5vw, 5.25rem) 0;
+  }
+}
+
+.bottomCta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+}
+
+.ctaContent {
+  position: relative;
+  max-width: 680px;
+  margin: 0 auto;
+  z-index: 2;
+}
+
+.ctaEyebrow {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #60a5fa;
+  margin-bottom: 0.75rem;
+}
+
+.ctaTitle {
+  font-family: var(--font-sans);
+  font-size: clamp(2rem, 3.8vw, 2.75rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+  margin-bottom: 1rem;
+  color: #ffffff;
+  text-wrap: balance;
+}
+
+.ctaSubtitle {
+  font-family: var(--font-sans);
+  font-size: clamp(0.98rem, 1.3vw, 1.08rem);
+  font-weight: 400;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.88);
+  margin-bottom: 2.25rem;
+  text-wrap: balance;
+}
+
+.ctaActions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+@media (max-width: 520px) {
+  .ctaActions {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+.primaryCtaBtn {
+  background-color: #2563eb;
+  color: #ffffff !important;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 0.9rem 2.25rem;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.35);
+}
+
+.primaryCtaBtn:hover {
+  background-color: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45);
+}
+
+.secondaryCtaBtn {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff !important;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 0.9rem 2rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.secondaryCtaBtn:hover {
+  background-color: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+@media (max-width: 520px) {
+  .primaryCtaBtn,
+  .secondaryCtaBtn {
+    width: 100%;
+  }
+}
+
+.ctaContactRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1.75rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+@media (max-width: 640px) {
+  .ctaContactRow {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+}
+
+.ctaContactLink {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  transition: color 0.2s ease;
+}
+
+.ctaContactLink:hover {
+  color: #93c5fd;
+}

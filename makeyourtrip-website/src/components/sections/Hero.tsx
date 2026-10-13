@@ -1,249 +1,271 @@
 'use client'
 
-import { useState, useEffect, useRef, useId } from 'react'
-import { useRouter } from 'next/navigation'
+import { useState, useEffect, useRef, useCallback } from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
 import styles from './Hero.module.css'
 
-function RandomPlane() {
-  const containerRef = useRef<SVGGElement>(null)
-  const planeRef = useRef<SVGGElement>(null)
-  const maskPathRef = useRef<SVGPathElement>(null)
-  const pathRef = useRef<SVGPathElement>(null)
-  const id = useId()
-  const maskId = `mask-${id.replace(/:/g, '')}`
-
-  useEffect(() => {
-    let timeoutId: NodeJS.Timeout
-    let active = true
-
-    const animatePlane = () => {
-      if (!active || !planeRef.current || !maskPathRef.current || !pathRef.current) return
-      
-      const width = window.innerWidth
-      const height = window.innerHeight
-      
-      // Determine direction
-      const isLtr = Math.random() > 0.5
-      const startX = isLtr ? -100 : width + 100
-      const startY = Math.random() * height
-      const endX = isLtr ? width + 100 : -100
-      const endY = Math.random() * height
-      
-      const numSegments = 4
-      const direction = isLtr ? 1 : -1
-      const segmentWidth = (width + 200) / numSegments
-      
-      let d = `M ${startX} ${startY}`
-      let currentX = startX
-      let snakeDir = Math.random() > 0.5 ? 1 : -1
-
-      for (let i = 0; i < numSegments; i++) {
-        const nextX = startX + direction * (i + 1) * segmentWidth
-        const nextY = startY // Keep a straight horizontal baseline
-        
-        const bumpHeight = segmentWidth * 0.5 // 50% rounded
-        const cpOffsetX = segmentWidth * 0.276 // Approximation for semi-circle
-        
-        const cp1x = currentX + direction * cpOffsetX
-        const cp1y = startY + snakeDir * bumpHeight
-        
-        const cp2x = nextX - direction * cpOffsetX
-        const cp2y = startY + snakeDir * bumpHeight
-        
-        d += ` C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${nextX} ${nextY}`
-        
-        currentX = nextX
-        snakeDir *= -1 // Alternate curve
-      }
-      
-      pathRef.current.setAttribute('d', d)
-      maskPathRef.current.setAttribute('d', d)
-      planeRef.current.style.offsetPath = `path('${d}')`
-      
-      const length = maskPathRef.current.getTotalLength()
-      maskPathRef.current.style.strokeDasharray = `${length}`
-      maskPathRef.current.style.strokeDashoffset = `${length}`
-      
-      const duration = length * 5 // Constant speed: 5ms per pixel (approx 200px/s)
-
-      // Fade in container
-      containerRef.current?.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 1000, fill: 'forwards' })
-
-      const planeAnim = planeRef.current.animate([
-        { offsetDistance: '0%' },
-        { offsetDistance: '100%' }
-      ], { duration, easing: 'linear', fill: 'forwards' })
-      
-      maskPathRef.current.animate([
-        { strokeDashoffset: length },
-        { strokeDashoffset: 0 }
-      ], { duration, easing: 'linear', fill: 'forwards' })
-      
-      planeAnim.onfinish = () => {
-        if (!active) return
-        const fade = containerRef.current?.animate([
-          { opacity: 1 }, { opacity: 0 }
-        ], { duration: 1000, fill: 'forwards' })
-        
-        if (fade) {
-          fade.onfinish = () => {
-            if (active) timeoutId = setTimeout(animatePlane, Math.random() * 4000)
-          }
-        }
-      }
-    }
-    
-    timeoutId = setTimeout(animatePlane, Math.random() * 2000)
-    
-    return () => {
-      active = false
-      clearTimeout(timeoutId)
-    }
-  }, [])
-
-  return (
-    <g ref={containerRef} style={{ opacity: 0 }}>
-      <defs>
-        <mask id={maskId}>
-          <path ref={maskPathRef} stroke="white" strokeWidth="4" fill="none" />
-        </mask>
-      </defs>
-      <path 
-        ref={pathRef} 
-        stroke="rgba(255, 255, 255, 0.4)" 
-        strokeWidth="1.5" 
-        strokeDasharray="6 6" 
-        fill="none" 
-        mask={`url(#${maskId})`} 
-      />
-      <g ref={planeRef} style={{ offsetRotate: 'auto' }}>
-        <g transform="translate(-12, -12) rotate(90, 12, 12) scale(1.2)">
-           <path fill="white" d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" />
-        </g>
-      </g>
-    </g>
-  )
+interface FeaturedDestination {
+  slug: string
+  name: string
+  country: string
+  region: string
+  image: string
+  tagline: string
 }
 
-function Counter({ label, sub, value, min, max, onChange }: { label: string, sub: string, value: number, min: number, max: number, onChange: (val: number) => void }) {
-  return (
-    <div className={styles.counter}>
-      <div className={styles.counterInfo}>
-        <span className={styles.counterLabel}>{label}</span>
-        <span className={styles.counterSub}>{sub}</span>
-      </div>
-      <div className={styles.counterControls}>
-        <button type="button" className={styles.counterBtn} disabled={value <= min} onClick={() => onChange(value - 1)}>-</button>
-        <span className={styles.counterValue}>{value}</span>
-        <button type="button" className={styles.counterBtn} disabled={value >= max} onClick={() => onChange(value + 1)}>+</button>
-      </div>
-    </div>
-  )
-}
+const featuredDestinations: FeaturedDestination[] = [
+  {
+    slug: 'tokyo',
+    name: 'Tokyo',
+    country: 'Japan',
+    region: 'Asia',
+    image: '/images/destinations/tokyo.jpg',
+    tagline: 'Ultra-Modern Energy & Heritage',
+  },
+  {
+    slug: 'amalfi-coast',
+    name: 'Amalfi Coast',
+    country: 'Italy',
+    region: 'Europe',
+    image: '/images/destinations/amalfi-coast.jpg',
+    tagline: 'Cliffside Mediterranean Charm',
+  },
+  {
+    slug: 'interlaken',
+    name: 'Swiss Alps',
+    country: 'Switzerland',
+    region: 'Europe',
+    image: '/images/destinations/interlaken.jpg',
+    tagline: 'Scenic Alpine Rail & Glaciers',
+  },
+  {
+    slug: 'paris',
+    name: 'Paris',
+    country: 'France',
+    region: 'Europe',
+    image: '/images/destinations/paris.jpg',
+    tagline: 'Art, Architecture & Gastronomy',
+  },
+  {
+    slug: 'kyoto',
+    name: 'Kyoto',
+    country: 'Japan',
+    region: 'Asia',
+    image: '/images/destinations/kyoto.jpg',
+    tagline: 'Ancient Shrines & Zen Gardens',
+  },
+  {
+    slug: 'santorini',
+    name: 'Santorini',
+    country: 'Greece',
+    region: 'Europe',
+    image: '/images/destinations/santorini.jpg',
+    tagline: 'Caldera Sunsets & Aegean Views',
+  },
+  {
+    slug: 'banff',
+    name: 'Banff & Rockies',
+    country: 'Canada',
+    region: 'Americas',
+    image: '/images/destinations/banff.jpg',
+    tagline: 'Glacial Lakes & Mountain Lodges',
+  },
+  {
+    slug: 'dubai',
+    name: 'Dubai',
+    country: 'UAE',
+    region: 'Middle East',
+    image: '/images/destinations/dubai.jpg',
+    tagline: 'Skyline Architecture & Desert Safaris',
+  },
+]
 
 export default function Hero() {
-  const router = useRouter()
-  const [from, setFrom] = useState('')
-  const [to, setTo] = useState('')
-  const [date, setDate] = useState('')
-  const [showTravelers, setShowTravelers] = useState(false)
-  const [adults, setAdults] = useState(1)
-  const [children, setChildren] = useState(0)
-  const [infants, setInfants] = useState(0)
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [isPaused, setIsPaused] = useState(false)
+  const touchStartX = useRef<number | null>(null)
+  const touchEndX = useRef<number | null>(null)
 
-  const totalTravelers = adults + children + infants
-  const travelerSummary = `${totalTravelers} Traveller${totalTravelers > 1 ? 's' : ''}`
+  const total = featuredDestinations.length
 
-  const selectWrapRef = useRef<HTMLDivElement>(null)
-  
+  const handleNext = useCallback(() => {
+    setCurrentIndex((prev) => (prev + 1) % total)
+  }, [total])
+
+  const handlePrev = useCallback(() => {
+    setCurrentIndex((prev) => (prev - 1 + total) % total)
+  }, [total])
+
+  // Automated slider timer: advances smoothly every 3.8s, pauses on hover/touch
   useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (selectWrapRef.current && !selectWrapRef.current.contains(event.target as Node)) {
-        setShowTravelers(false)
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside)
-    return () => document.removeEventListener("mousedown", handleClickOutside)
-  }, [])
+    if (isPaused) return
+    const interval = setInterval(handleNext, 3800)
+    return () => clearInterval(interval)
+  }, [isPaused, handleNext])
 
-  const handleQuote = (e: React.FormEvent) => {
-    e.preventDefault()
-    const params = new URLSearchParams()
-    if (from) params.set('from', from)
-    if (to) params.set('to', to)
-    if (date) params.set('date', date)
-    params.set('adults', adults.toString())
-    if (children > 0) params.set('children', children.toString())
-    if (infants > 0) params.set('infants', infants.toString())
-    
-    router.push(`/plan-your-trip?${params.toString()}`)
+  // Touch swipe support for mobile
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.targetTouches[0].clientX
+    touchEndX.current = null
+  }
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.targetTouches[0].clientX
+  }
+
+  const handleTouchEnd = () => {
+    if (!touchStartX.current || !touchEndX.current) return
+    const diff = touchStartX.current - touchEndX.current
+    if (diff > 45) {
+      handleNext()
+    } else if (diff < -45) {
+      handlePrev()
+    }
+    touchStartX.current = null
+    touchEndX.current = null
   }
 
   return (
     <section className={styles.hero} id="hero" aria-label="Hero — MakeYourTrip Inc.">
-      {/* Animated SVG background planes and dashed lines */}
-      <div className={styles.heroBg} aria-hidden="true">
-        <svg width="100%" height="100%" className={styles.heroSvg} preserveAspectRatio="xMidYMid slice">
-          <RandomPlane />
-          <RandomPlane />
-          <RandomPlane />
-          <RandomPlane />
-        </svg>
-      </div>
+      <div className={styles.heroContainer}>
+        
+        {/* 1. MULTI-IMAGE AUTOMATION SLIDER (On mobile: top, edge-to-edge full width) */}
+        <div
+          className={styles.sliderSection}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          aria-label="Featured destinations slider"
+        >
+          <div className={styles.sliderViewport}>
+            <div
+              className={styles.sliderTrack}
+              style={{
+                transform: `translateX(-${currentIndex * 100}%)`,
+              }}
+            >
+              {featuredDestinations.map((dest, idx) => {
+                const isActive = idx === currentIndex
+                return (
+                  <article
+                    key={dest.slug}
+                    className={`${styles.slideCard} ${isActive ? styles.slideCardActive : ''}`}
+                    aria-hidden={!isActive}
+                  >
+                    <div className={styles.slideImageWrap}>
+                      <Image
+                        src={dest.image}
+                        alt={`${dest.name}, ${dest.country} scenic landmark view`}
+                        fill
+                        sizes="(max-width: 900px) 100vw, 55vw"
+                        priority={idx === 0}
+                        className={styles.slideImage}
+                      />
+                      <div className={styles.slideOverlay} aria-hidden="true" />
 
-      <div className={styles.content}>
-        <div className={styles.contentInner}>
-          <div className={styles.textContent}>
-            <h1 className={styles.headline}>
-              Your travel,<br /><span className={styles.headlineAccent}>perfectly planned.</span>
-            </h1>
+                      <div className={styles.slideBottomContent}>
+                        <h2 className={styles.slideTitle}>{dest.name}</h2>
+                        <p className={styles.slideTagline}>{dest.tagline}</p>
+                        <Link
+                          href={`/destinations/${dest.slug}/`}
+                          className={styles.slideLink}
+                        >
+                          Explore Guide →
+                        </Link>
+                      </div>
+                    </div>
+                  </article>
+                )
+              })}
+            </div>
+          </div>
+        </div>
+
+        {/* 2. TEXT CONTENT & ACTION (On mobile: positioned cleanly below the image) */}
+        <div className={styles.textContent}>
+          <h1 className={styles.headline}>
+            Your travel,<br />
+            <span className={styles.headlineAccent}>perfectly planned.</span>
+          </h1>
+
+          <div className={styles.trustBadges}>
+            <div className={styles.trustItem}>
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              <span>100% Tailored Routes</span>
+            </div>
+            <span className={styles.trustDivider} aria-hidden="true">•</span>
+            <div className={styles.trustItem}>
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              <span>Visa & Paperwork Help</span>
+            </div>
+            <span className={styles.trustDivider} aria-hidden="true">•</span>
+            <div className={`${styles.trustItem} ${styles.trustItemCenter}`}>
+              <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              <span>24/7 Human Assistance</span>
+            </div>
           </div>
 
-          <form className={styles.quoteForm} onSubmit={handleQuote}>
-            <div className={styles.formRow}>
-              <div className={styles.inputGroup}>
-                <label>From</label>
-                <input type="text" placeholder="Mumbai" value={from} onChange={e => setFrom(e.target.value)} required />
-              </div>
-              <div className={styles.inputGroup}>
-                <label>To</label>
-                <input type="text" placeholder="Vancouver" value={to} onChange={e => setTo(e.target.value)} required />
-              </div>
-            </div>
-            <div className={styles.formRow}>
-              <div className={styles.inputGroup}>
-                <label>Departure</label>
-                <input type="date" value={date} onChange={e => setDate(e.target.value)} required />
-              </div>
-              <div className={styles.inputGroup}>
-                <label>Travellers</label>
-                <div className={styles.selectWrap} ref={selectWrapRef}>
-                  <button
-                    type="button"
-                    className={styles.fieldSelect}
-                    onClick={() => setShowTravelers(!showTravelers)}
-                    aria-expanded={showTravelers}
-                    style={{ textAlign: 'left' }}
-                  >
-                    {travelerSummary}
-                  </button>
-                  <span className={styles.selectChevron} aria-hidden="true" style={{ transition: 'transform 0.2s', transform: showTravelers ? 'rotate(180deg)' : 'none' }}>▾</span>
-                  
-                  {showTravelers && (
-                    <div className={styles.travelerPanel}>
-                      <Counter label="Adults" sub="Age 12+" value={adults} min={1} max={9} onChange={setAdults} />
-                      <Counter label="Children" sub="Age 2–11" value={children} min={0} max={8} onChange={setChildren} />
-                      <Counter label="Infants" sub="Under 2" value={infants} min={0} max={Math.min(4, adults)} onChange={setInfants} />
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-            <button type="submit" className={styles.submitBtn}>
-              Enquire Now →
-            </button>
-          </form>
+          <div className={styles.heroCtas}>
+            <Link href="/plan-your-trip" className={styles.planTripBtn} id="hero-plan-trip">
+              <span>Plan Your Trip</span>
+              <svg
+                className={styles.planTripArrow}
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
+            </Link>
+          </div>
         </div>
+
       </div>
     </section>
   )

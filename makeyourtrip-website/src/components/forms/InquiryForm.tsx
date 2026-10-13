@@ -84,6 +84,8 @@ export default function InquiryForm() {
   const initialInfants = searchParams.get('infants') ? parseInt(searchParams.get('infants') as string) : 0
 
   const [status, setStatus] = useState<FormStatus>('idle')
+  const [submittedRef, setSubmittedRef] = useState<string>('')
+  const [submittedName, setSubmittedName] = useState<string>('')
   const [journeyType, setJourneyType] = useState<JourneyType>('one-way')
   const [showTravelers, setShowTravelers] = useState(false)
   const [showClassOptions, setShowClassOptions] = useState(false)
@@ -150,25 +152,87 @@ export default function InquiryForm() {
       const legsText = data.legs
         .map((l, i) => `Leg ${i + 1}: ${l.from} → ${l.to} on ${l.date}`)
         .join('\n')
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        {
-          journey_type: data.journeyType,
-          legs: legsText,
-          return_date: data.returnDate ?? 'N/A',
-          adults: data.adults,
-          children: data.children,
-          infants: data.infants,
-          travel_class: data.travelClass,
-          from_name: data.fullName,
-          from_email: data.email,
+
+      // 1. Post to Hostinger CRM Database / API
+      try {
+        await fetch('/api/inquiries.php', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        })
+      } catch (apiErr) {
+        // Log quietly so email submission still proceeds
+        console.warn('CRM API sync notice:', apiErr)
+      }
+
+      // Also save to local browser storage so it shows immediately in /admin CRM in development
+      try {
+        const LOCAL_STORAGE_KEY = 'myt_crm_local_inquiries'
+        const existing = localStorage.getItem(LOCAL_STORAGE_KEY)
+        let list = existing ? JSON.parse(existing) : []
+        const generatedRef = 'MYT-' + Math.floor(100000 + Math.random() * 900000)
+        setSubmittedRef(generatedRef)
+        setSubmittedName(data.fullName)
+        const newRecord = {
+          id: Date.now(),
+          reference_code: generatedRef,
+          full_name: data.fullName,
+          email: data.email,
           phone: data.phone,
-          country: data.country,
-          requirements: data.requirements ?? 'None',
-        },
-        EMAILJS_PUBLIC_KEY
-      )
+          country: data.country || 'Worldwide',
+          journey_type: data.journeyType,
+          travel_class: data.travelClass,
+          adults: Number(data.adults),
+          children: Number(data.children || 0),
+          infants: Number(data.infants || 0),
+          return_date: data.returnDate,
+          requirements: data.requirements,
+          legs: data.legs,
+          status: 'new',
+          source: 'website_form',
+          created_at: new Date().toISOString(),
+          notes: [
+            {
+              id: Date.now(),
+              admin_name: 'System',
+              note: 'Inquiry received via Website Form',
+              created_at: new Date().toLocaleString()
+            }
+          ]
+        }
+        list = [newRecord, ...list]
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(list))
+      } catch {
+        // ignore localStorage errors
+      }
+
+      // 2. Dispatch EmailJS notification (if keys provided)
+      if (EMAILJS_SERVICE_ID && EMAILJS_TEMPLATE_ID && EMAILJS_PUBLIC_KEY) {
+        try {
+          await emailjs.send(
+            EMAILJS_SERVICE_ID,
+            EMAILJS_TEMPLATE_ID,
+            {
+              journey_type: data.journeyType,
+              legs: legsText,
+              return_date: data.returnDate ?? 'N/A',
+              adults: data.adults,
+              children: data.children,
+              infants: data.infants,
+              travel_class: data.travelClass,
+              from_name: data.fullName,
+              from_email: data.email,
+              phone: data.phone,
+              country: data.country,
+              requirements: data.requirements ?? 'None',
+            },
+            EMAILJS_PUBLIC_KEY
+          )
+        } catch (emailErr) {
+          console.warn('EmailJS notice:', emailErr)
+        }
+      }
+
       setStatus('success')
       reset()
       setJourneyType('one-way')
@@ -180,21 +244,73 @@ export default function InquiryForm() {
   if (status === 'success') {
     return (
       <div className={styles.successState} role="alert" aria-live="polite">
-        <h2 className={styles.successTitle}>What Happens Next?</h2>
-        <ul className={styles.stepsList}>
-          <li className={styles.stepsItem}>
-            <span className={styles.stepsNum}>01</span>
-            <p>We receive your inquiry and review your requirements.</p>
-          </li>
-          <li className={styles.stepsItem}>
-            <span className={styles.stepsNum}>02</span>
-            <p>A member of our team gets in touch to discuss your options.</p>
-          </li>
-          <li className={styles.stepsItem}>
-            <span className={styles.stepsNum}>03</span>
-            <p>We help you move forward with the right plan for your journey.</p>
-          </li>
-        </ul>
+        {/* Success Icon & Header */}
+        <div className={styles.successHeader}>
+          <div className={styles.successIconBadge}>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+          </div>
+          <span className={styles.successEyebrow}>Inquiry Received</span>
+          <h2 className={styles.successTitle}>Thank You{submittedName ? `, ${submittedName.split(' ')[0]}` : ''}!</h2>
+          <p className={styles.successSubtitle}>
+            Your travel request has been logged. Our international flight desk is already reviewing your route options.
+          </p>
+          {submittedRef && (
+            <div className={styles.successRefBox}>
+              <span className={styles.successRefLabel}>Booking Reference:</span>
+              <span className={styles.successRefCode}>{submittedRef}</span>
+            </div>
+          )}
+        </div>
+
+        {/* Process Timeline Card */}
+        <div className={styles.successTimelineCard}>
+          <h3 className={styles.timelineCardTitle}>What Happens Next?</h3>
+          <ul className={styles.stepsList}>
+            <li className={styles.stepsItem}>
+              <span className={styles.stepsNum}>01</span>
+              <div>
+                <strong className={styles.stepTitle}>Requirement Review</strong>
+                <p>We analyze flight inventory, cabin tiers, and transit timing tailored to your dates.</p>
+              </div>
+            </li>
+            <li className={styles.stepsItem}>
+              <span className={styles.stepsNum}>02</span>
+              <div>
+                <strong className={styles.stepTitle}>Personalized Outreach</strong>
+                <p>A senior travel specialist connects with you via WhatsApp or phone to present quotes.</p>
+              </div>
+            </li>
+            <li className={styles.stepsItem}>
+              <span className={styles.stepsNum}>03</span>
+              <div>
+                <strong className={styles.stepTitle}>Seamless Confirmation</strong>
+                <p>We finalize ticketing, special seat requests, and visa checklist guidance.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        {/* Action Buttons */}
+        <div className={styles.successActionRow}>
+          <button
+            type="button"
+            onClick={() => {
+              setStatus('idle')
+              window.scrollTo({ top: 300, behavior: 'smooth' })
+            }}
+            className={styles.successPrimaryBtn}
+          >
+            Plan Another Trip
+          </button>
+          <a href="tel:+919528203267" className={styles.successSecondaryBtn}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+            </svg>
+            <span>Call Advisory Desk</span>
+          </a>
+        </div>
       </div>
     )
   }

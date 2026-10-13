@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import PageHero from '@/components/ui/PageHero'
@@ -35,8 +36,8 @@ const sections = [
     body: 'Your use of this website is also governed by our Privacy Policy. Please review it to understand how we handle your personal information.',
   },
   {
-    heading: '7. Contact',
-    body: 'For questions about these terms, please contact us at info@makeyourtripinc.com.',
+    heading: '7. Contact & Registered Office',
+    body: 'For questions regarding these terms, please contact us at info@makeyourtripinc.com or via mail at: MakeYourTrip Inc., 2108 N ST #7740, Sacramento, CA, 95816, USA.',
   },
 ]
 
@@ -45,7 +46,17 @@ export default function TermsPage() {
     <>
       <Header />
       <main id="main-content">
-        <PageHero eyebrow="Legal" title="Terms & Conditions" />
+        <PageHero
+          breadcrumbs={
+            <>
+              <Link href="/">Home</Link>
+              <span>/</span>
+              <span>Terms & Conditions</span>
+            </>
+          }
+          eyebrow="Legal"
+          title="Terms & Conditions"
+        />
         <section className={`section ${styles.legalSection}`} aria-label="Terms and conditions content">
           <div className="container container--narrow">
             <p className={styles.lastUpdated}>

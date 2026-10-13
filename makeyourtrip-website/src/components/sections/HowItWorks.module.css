@@ -1,159 +1,220 @@
 /* ================================================================
- * How It Works — Premium Cobalt Dark Section with Step Cards
+ * How It Works — Crisp Architectural Light Section
+ * MakeYourTrip Inc.
+ * Strictly: NO dark blue background, font-weight <= 500, NO gold
  * ================================================================ */
 
 .section {
-  background: linear-gradient(160deg, #0a1628 0%, #0d2060 50%, #0a1628 100%);
   position: relative;
+  background-color: #f8fafc;
+  border-top: 1px solid var(--color-stone-soft);
+  border-bottom: 1px solid var(--color-stone-soft);
   overflow: hidden;
+  padding: 5rem 0;
 }
 
-/* Decorative orbs */
-.section::before {
-  content: '';
+/* Background atmospheric gradient & subtle grid pattern */
+.bgDecoration {
   position: absolute;
-  top: -200px;
-  left: -100px;
-  width: 600px;
-  height: 600px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(26, 86, 219, 0.15) 0%, transparent 60%);
+  inset: 0;
   pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
 }
 
-.section::after {
-  content: '';
+.radialGlow {
   position: absolute;
-  bottom: -150px;
-  right: -80px;
+  top: -120px;
+  right: 5%;
   width: 500px;
   height: 500px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(200, 151, 42, 0.08) 0%, transparent 60%);
-  pointer-events: none;
+  background: radial-gradient(circle, rgba(26, 86, 219, 0.06) 0%, transparent 70%);
 }
 
+.gridOverlay {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(26, 86, 219, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(26, 86, 219, 0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(circle at 50% 30%, black 40%, transparent 80%);
+  -webkit-mask-image: radial-gradient(circle at 50% 30%, black 40%, transparent 80%);
+}
+
+/* Section Header: strictly heading only */
 .head {
-  max-width: 620px;
-  margin-bottom: var(--space-20);
   position: relative;
+  z-index: 1;
+  max-width: 720px;
+  margin-bottom: 3rem;
+  text-align: left;
 }
 
+/* Steps Grid */
 .steps {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-6);
-  position: relative;
+  gap: 1.5rem;
 }
 
-.step {
+/* Individual Step Card */
+.stepCard {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: var(--space-5);
-  position: relative;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: var(--radius-2xl);
-  padding: var(--space-10) var(--space-8);
-  transition: all var(--transition-base);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: #ffffff;
+  border: 1px solid rgba(26, 86, 219, 0.12);
+  border-radius: var(--radius-xl);
+  padding: 2rem 1.75rem;
+  box-shadow: 0 4px 20px rgba(10, 22, 40, 0.04);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
 }
 
-.step:hover {
-  background: rgba(26, 86, 219, 0.12);
-  border-color: rgba(26, 86, 219, 0.30);
+.stepCard:hover {
   transform: translateY(-4px);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.30);
+  border-color: rgba(26, 86, 219, 0.32);
+  box-shadow: 0 14px 32px rgba(26, 86, 219, 0.08);
 }
 
-/* Connector dots between steps */
-.connector {
-  display: none;
+/* Top bar with Step Number and Icon */
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
 }
 
-/* Step badge number */
-.stepNumber {
-  width: 52px;
-  height: 52px;
-  border-radius: var(--radius-full);
-  background: var(--color-blue-gradient);
+.stepNum {
+  font-family: var(--font-serif);
+  font-size: 2.3rem;
+  line-height: 1;
+  color: rgba(26, 86, 219, 0.22);
+  font-weight: 400;
+  transition: color 0.3s ease;
+}
+
+.stepCard:hover .stepNum {
+  color: var(--color-primary);
+}
+
+.iconBox {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, rgba(26, 86, 219, 0.08) 0%, rgba(26, 86, 219, 0.02) 100%);
+  border: 1px solid rgba(26, 86, 219, 0.14);
+  color: var(--color-primary);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-sans);
-  font-size: var(--text-sm);
-  font-weight: var(--weight-bold);
-  color: #ffffff;
-  letter-spacing: 0.05em;
-  box-shadow: var(--shadow-blue);
-  flex-shrink: 0;
-  user-select: none;
+  transition: all 0.3s ease;
 }
 
-.stepContent {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-  flex: 1;
+.stepCard:hover .iconBox {
+  background: var(--color-primary);
+  color: #ffffff;
+  border-color: var(--color-primary);
+}
+
+.stepTag {
+  display: inline-block;
+  align-self: flex-start;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
 }
 
 .stepTitle {
   font-family: var(--font-serif);
-  font-size: var(--text-2xl);
-  font-weight: var(--weight-regular);
-  color: #ffffff;
-  line-height: var(--leading-snug);
+  font-size: 1.35rem;
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--color-ink);
+  margin-bottom: 0.75rem;
 }
 
 .stepDesc {
   font-family: var(--font-sans);
-  font-size: var(--text-sm);
-  line-height: var(--leading-relaxed);
-  color: rgba(180, 205, 255, 0.70);
-  max-width: none;
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--color-charcoal);
+  margin-bottom: 1.25rem;
+  flex-grow: 1;
 }
 
-/* Curved dashed path between steps */
-.step:not(:last-child)::after {
-  content: '';
+.highlightsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px dashed rgba(26, 86, 219, 0.14);
+}
+
+.highlightItem {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-sans);
+  font-size: 0.84rem;
+  font-weight: 500;
+  color: var(--color-ink);
+}
+
+.checkIcon {
+  flex-shrink: 0;
+  color: var(--color-primary);
+}
+
+.cardBottomBar {
   position: absolute;
-  left: 100%;
-  top: 40%;
-  width: var(--space-6);
-  height: 40px;
-  transform: translateY(-50%);
-  border-top: 2px dashed rgba(200, 151, 42, 0.4);
-  border-radius: 50% 50% 0 0;
-  z-index: 2;
-  display: none;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, rgba(26, 86, 219, 0.2), transparent);
+  transition: all 0.3s ease;
 }
 
-@media (min-width: 900px) {
-  .step:not(:last-child)::after {
-    display: block;
+.stepCard:hover .cardBottomBar {
+  background: linear-gradient(90deg, var(--color-primary), #60a5fa);
+  height: 3px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stepCard:last-child {
+    grid-column: span 2;
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
+  .section {
+    padding: 3.5rem 0;
+  }
+
   .steps {
     grid-template-columns: 1fr;
-    gap: var(--space-4);
+    gap: 1.25rem;
   }
 
-  .step {
-    flex-direction: row;
-    align-items: flex-start;
-    padding: var(--space-7) var(--space-6);
-  }
-
-  .stepContent {
-    gap: var(--space-2);
-  }
-}
-
-@media (max-width: 560px) {
-  .step {
-    flex-direction: column;
+  .stepCard:last-child {
+    grid-column: span 1;
   }
 }

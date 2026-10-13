@@ -1,0 +1,160 @@
+/* ================================================================
+ * Reusable FAQ Accordion Section — MakeYourTrip Inc.
+ * Strict Constraint: font-weight <= 500 throughout
+ * ================================================================ */
+
+.faqSection {
+  padding: clamp(3.5rem, 6vw, 5rem) 0;
+  background-color: var(--color-ivory);
+  border-top: 1px solid var(--color-stone-soft);
+}
+
+.sectionHeader {
+  text-align: left;
+  max-width: 720px;
+  margin-bottom: var(--space-8);
+}
+
+.heading {
+  font-family: var(--font-serif);
+  font-size: var(--text-3xl);
+  font-weight: 400;
+  color: var(--color-ink);
+  line-height: var(--leading-tight);
+  margin-bottom: var(--space-3);
+}
+
+.heading em {
+  font-style: italic;
+  color: var(--color-primary);
+}
+
+.subheading {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: 400;
+  color: var(--color-slate);
+  line-height: var(--leading-normal);
+  margin: 0;
+}
+
+.accordionList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 860px;
+}
+
+.accordionItem {
+  background-color: #ffffff;
+  border: 1px solid rgba(26, 86, 219, 0.12);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: all var(--transition-base);
+  box-shadow: 0 2px 8px rgba(10, 22, 40, 0.02);
+}
+
+.accordionItem:hover {
+  border-color: rgba(26, 86, 219, 0.25);
+  box-shadow: 0 4px 16px rgba(10, 22, 40, 0.05);
+}
+
+.accordionItemOpen {
+  border-color: var(--color-primary);
+  box-shadow: 0 6px 20px rgba(26, 86, 219, 0.06);
+}
+
+.triggerButton {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  padding: 1.25rem 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color var(--transition-fast);
+}
+
+.triggerButton:hover {
+  background-color: rgba(234, 242, 252, 0.35);
+}
+
+.accordionItemOpen .triggerButton {
+  background-color: rgba(234, 242, 252, 0.45);
+}
+
+.questionText {
+  font-family: var(--font-sans);
+  font-size: 1.02rem;
+  font-weight: 500;
+  color: var(--color-ink);
+  line-height: 1.4;
+}
+
+.chevronWrapper {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: rgba(26, 86, 219, 0.08);
+  color: var(--color-primary);
+  transition: all var(--transition-base);
+}
+
+.accordionItemOpen .chevronWrapper {
+  background-color: var(--color-primary);
+  color: #ffffff;
+}
+
+.chevron {
+  transition: transform 0.25s ease;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.answerWrapper {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.answerOpen {
+  grid-template-rows: 1fr;
+}
+
+.answerInner {
+  overflow: hidden;
+}
+
+.answerText {
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  font-weight: 400;
+  color: var(--color-charcoal);
+  line-height: 1.65;
+  padding: 0 1.5rem 1.35rem 1.5rem;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .triggerButton {
+    padding: 1.1rem 1.25rem;
+  }
+
+  .questionText {
+    font-size: 0.95rem;
+  }
+
+  .answerText {
+    font-size: 0.88rem;
+    padding: 0 1.25rem 1.15rem 1.25rem;
+  }
+}

@@ -61,7 +61,11 @@ export const metadata: Metadata = {
     googleBot: { index: true, follow: true },
   },
   icons: {
-    icon: '/logo/MYT-LOGO.jpeg',
+    icon: [
+      { url: '/logo/MYT-LOGO.jpeg' },
+      { url: '/favicon.ico' }
+    ],
+    shortcut: '/logo/MYT-LOGO.jpeg',
     apple: '/logo/MYT-LOGO.jpeg',
   },
 }
@@ -71,8 +75,106 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const organizationSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'TravelAgency',
+    name: 'MakeYourTrip Inc.',
+    alternateName: ['MakeYourTrip', 'Make Your Trip Inc.'],
+    url: 'https://www.makeyourtripinc.com',
+    logo: 'https://www.makeyourtripinc.com/logo/MYT-LOGO.jpeg',
+    image: 'https://www.makeyourtripinc.com/images/hero/hero-main.jpg',
+    description:
+      'MakeYourTrip Inc. provides bespoke international travel planning, customized itineraries, flight arrangements, and visa guidance worldwide.',
+    telephone: '+1-650-729-0130',
+    email: 'info@makeyourtripinc.com',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '2108 N ST #7740',
+      addressLocality: 'Sacramento',
+      addressRegion: 'CA',
+      postalCode: '95816',
+      addressCountry: 'US',
+    },
+    priceRange: '$$',
+    areaServed: [
+      'Worldwide',
+      'United States',
+      'Canada',
+      'United Kingdom',
+      'Europe',
+      'Australia',
+    ],
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'International Travel Planning Services',
+      itemListElement: [
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Custom Itinerary Planning & Route Architecture',
+            description: 'Personalized day-by-day international travel route planning tailored to individual preferences.',
+          },
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Smart Flight Booking & Layover Optimization',
+            description: 'Strategic international flight routing, multi-city connection assistance, and schedule protection.',
+          },
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Travel Visa Guidance & Paperwork Assistance',
+            description: 'End-to-end tourist visa documentation, application reviews, and consular guidance.',
+          },
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Destination Guidance & Local Travel Advice',
+            description: 'Curated neighborhood navigation, transit pass instructions, cultural etiquette, and seasonal guidance.',
+          },
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Group & Corporate Travel Route Management',
+            description: 'Synchronized multi-traveler flight schedules, shared group transfers, and master route coordination.',
+          },
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: '24/7 Human On-Trip Concierge Support',
+            description: 'Round-the-clock live travel advisor helpline for flight disruptions, transit delays, and route changes.',
+          },
+        },
+      ],
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.9',
+      reviewCount: '128',
+      bestRating: '5',
+      worstRating: '1',
+    },
+  }
+
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+      </head>
       <body className={`${dmSerif.variable} ${manrope.variable}`}>
         <a href="#main-content" className="skip-link">Skip to main content</a>
         {children}

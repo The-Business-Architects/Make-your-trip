@@ -57,10 +57,10 @@
 .country {
   font-family: var(--font-sans);
   font-size: var(--text-xs);
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: var(--tracking-widest);
   text-transform: uppercase;
-  color: #c9a84c;
+  color: var(--color-primary);
   margin-bottom: var(--space-1);
 }
 
@@ -83,10 +83,10 @@
 .cta {
   font-family: var(--font-sans);
   font-size: var(--text-xs);
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
-  color: var(--color-accent);
+  color: var(--color-primary);
   display: inline-flex;
   align-items: center;
   gap: var(--space-1);

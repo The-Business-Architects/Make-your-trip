@@ -1,0 +1,378 @@
+/* ============================================================
+   Destination CTA Section — Light Architectural Aesthetic
+   - Light background with minimal gradients (matching header)
+   - Zero description paragraph
+   - Interactive 4-field inquiry form (From, To prefilled, Date, Travellers)
+   - Authentic contact details from contact page
+   - Font weight maximum 500
+   ============================================================ */
+
+.ctaSection {
+  position: relative;
+  padding: clamp(5.5rem, 8vw, 7.5rem) 0;
+  background: linear-gradient(135deg, #f0f7ff 0%, #e8f2fc 50%, #f4f8fd 100%);
+  border-top: 1px solid var(--color-stone);
+  overflow: hidden;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .ctaSection {
+    padding: clamp(3.75rem, 6vw, 4.75rem) 0;
+  }
+}
+
+/* Subtle Architectural Background Graphics */
+.bgGraphics {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.gridOverlay {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(26, 86, 219, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(26, 86, 219, 0.035) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.decorCircleLeft {
+  position: absolute;
+  width: 440px;
+  height: 440px;
+  border-radius: 50%;
+  border: 1px solid rgba(26, 86, 219, 0.08);
+  top: -120px;
+  left: -120px;
+}
+
+.decorCircleRight {
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  border: 1px dashed rgba(26, 86, 219, 0.09);
+  bottom: -160px;
+  right: -140px;
+}
+
+/* Card Container */
+.ctaCard {
+  position: relative;
+  max-width: 960px;
+  margin: 0 auto;
+  background: #ffffff;
+  border: 1px solid #dce5f0;
+  border-radius: 20px;
+  padding: clamp(2.25rem, 4vw, 3.25rem);
+  box-shadow: 0 12px 36px rgba(15, 23, 42, 0.05);
+  z-index: 2;
+}
+
+@media (max-width: 640px) {
+  .ctaCard {
+    padding: 1.75rem 1.25rem;
+    border-radius: 14px;
+  }
+}
+
+/* Header (Minimal, zero description paragraph) */
+.headerBlock {
+  text-align: left;
+  max-width: 760px;
+  margin: 0 0 clamp(1.5rem, 2.5vw, 2rem);
+}
+
+.ctaTitle {
+  font-family: var(--font-sans);
+  font-size: clamp(1.85rem, 3.2vw, 2.45rem);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+  color: var(--color-ink);
+  margin: 0;
+  text-wrap: balance;
+}
+
+/* Interactive Form */
+.quoteForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+@media (max-width: 720px) {
+  .formRow {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  position: relative;
+}
+
+.fieldLabel {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-charcoal);
+  letter-spacing: 0.02em;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 1rem;
+  color: #64748b;
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+.inputField {
+  width: 100%;
+  font-family: var(--font-sans);
+  font-size: 0.94rem;
+  font-weight: 400;
+  color: var(--color-ink);
+  background-color: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 0.8rem 1rem 0.8rem 2.6rem;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.inputField:focus {
+  background-color: #ffffff;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(26, 86, 219, 0.12);
+}
+
+/* Custom Dropdown for Travellers */
+.selectWrap {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.selectIcon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #64748b;
+  pointer-events: none;
+  z-index: 2;
+  flex-shrink: 0;
+}
+
+.fieldSelect {
+  width: 100%;
+  font-family: var(--font-sans);
+  font-size: 0.94rem;
+  font-weight: 400;
+  color: var(--color-ink);
+  background-color: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  padding: 0.8rem 1rem 0.8rem 2.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.fieldSelect:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.selectChevron {
+  color: #64748b;
+  font-size: 0.8rem;
+  transition: transform 0.2s ease;
+}
+
+/* Counter Popover */
+.travelerPanel {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.12);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.counter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.counterInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.counterLabel {
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--color-ink);
+}
+
+.counterSub {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: #64748b;
+}
+
+.counterControls {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.counterBtn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid #cbd5e1;
+  background-color: #f8fafc;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.counterBtn:hover:not(:disabled) {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #ffffff;
+}
+
+.counterBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.counterValue {
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--color-ink);
+  min-width: 18px;
+  text-align: center;
+}
+
+/* Submit Row */
+.submitRow {
+  margin-top: 0.5rem;
+}
+
+.submitBtn {
+  width: 100%;
+  padding: 0.95rem 2rem;
+  background-color: var(--color-primary);
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-family: var(--font-sans);
+  font-size: 0.98rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 16px rgba(26, 86, 219, 0.28);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.submitBtn:hover {
+  background-color: var(--color-primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 22px rgba(26, 86, 219, 0.38);
+}
+
+.submitBtn:active {
+  transform: translateY(0);
+}
+
+/* Authentic Contact Strip */
+.contactRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1.75rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+@media (max-width: 640px) {
+  .contactRow {
+    flex-direction: column;
+    gap: 0.85rem;
+    align-items: flex-start;
+  }
+}
+
+.contactLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.contactLink:hover {
+  color: var(--color-primary-dark);
+}
+
+.contactNote {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--color-slate);
+}

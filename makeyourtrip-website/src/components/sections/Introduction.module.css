@@ -152,16 +152,24 @@
 @media (max-width: 900px) {
   .inner {
     grid-template-columns: 1fr;
-    gap: var(--space-12);
+    gap: var(--space-8);
   }
 
+  /* Image first on mobile / tablet */
   .imageSide {
-    height: clamp(280px, 55vw, 420px);
+    order: -1;
+    height: clamp(260px, 55vw, 380px);
+    width: 100%;
+  }
+
+  .textSide {
+    order: 1;
   }
 }
 
 @media (max-width: 768px) {
-  .imageSide {
-    display: none;
+  /* Remove badge on mobile devices as requested */
+  .floatCard {
+    display: none !important;
   }
 }

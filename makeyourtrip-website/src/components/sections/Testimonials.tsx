@@ -73,23 +73,20 @@ export default function Testimonials() {
     >
       <div className="container">
         <div className={`reveal-left ${styles.head}`} ref={headRef}>
-          <p className="eyebrow">Traveler Stories</p>
-          <hr className="divider" />
           <h2 className="section-title" id="testimonials-heading">
             What Our <em>Travelers Say.</em>
           </h2>
-          <p className={`section-subtitle ${styles.subtitle}`}>
-            Placeholder testimonials — to be updated with verified client stories.
-          </p>
         </div>
 
         <div className={styles.grid} ref={gridRef} onScroll={handleScroll}>
           {testimonials.map(({ id, quote, name, origin, destination }) => (
             <figure key={id} id={id} className={`stagger-item ${styles.card}`}>
-              <div className={styles.quoteIcon} aria-hidden="true">
-                <svg width="28" height="24" viewBox="0 0 28 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M0 24V14.4C0 9.6 1.6 5.73333 4.8 2.8C8 0.933333 11.7333 0 16 0V4C13.3333 4 11.2 4.8 9.6 6.4C8 8 7.2 10.4 7.2 13.6H12V24H0ZM16 24V14.4C16 9.6 17.6 5.73333 20.8 2.8C24 0.933333 27.7333 0 32 0V4C29.3333 4 27.2 4.8 25.6 6.4C24 8 23.2 10.4 23.2 13.6H28V24H16Z" fill="currentColor"/>
-                </svg>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '3px', marginBottom: '0.75rem', color: 'var(--color-primary)' }} aria-label="5 out of 5 stars">
+                {[...Array(5)].map((_, starIdx) => (
+                  <svg key={starIdx} width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                ))}
               </div>
               <blockquote className={styles.quote}>
                 <p>&ldquo;{quote}&rdquo;</p>

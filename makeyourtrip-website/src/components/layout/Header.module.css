@@ -155,7 +155,32 @@
 }
 
 .header--transparent .navLink::after {
-  background: var(--color-gold-gradient);
+  background: var(--color-blue-gradient);
+}
+
+@media (min-width: 901px) {
+  .header--transparent {
+    background: rgba(234, 242, 252, 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(26, 86, 219, 0.08);
+  }
+
+  .header--transparent .logoName {
+    color: var(--color-ink);
+  }
+
+  .header--transparent .logoTagline {
+    color: var(--color-primary);
+  }
+
+  .header--transparent .navLink {
+    color: var(--color-charcoal);
+  }
+
+  .header--transparent .navLink:hover {
+    color: var(--color-primary);
+  }
 }
 
 /* ─── CTA Button ─────────────────────────────── */
@@ -317,6 +342,234 @@
   transform: translateY(-1px);
 }
 
+/* ─── Desktop Dropdowns ──────────────────────── */
+.dropdownWrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.dropdownTrigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.caret {
+  transition: transform var(--transition-fast);
+  color: currentColor;
+}
+
+.caretOpen {
+  transform: rotate(180deg);
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffffff;
+  border-radius: var(--radius-xl, 16px);
+  border: 1px solid rgba(26, 86, 219, 0.14);
+  box-shadow: 0 16px 40px rgba(10, 22, 40, 0.12), 0 4px 12px rgba(26, 86, 219, 0.06);
+  padding: var(--space-4, 16px);
+  z-index: 120;
+  animation: dropdownFadeIn 180ms ease-out forwards;
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -6px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+.dropdownMenuDestinations {
+  width: 440px;
+}
+
+.dropdownMenuServices {
+  width: 580px;
+}
+
+.dropdownHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: var(--space-3, 12px);
+  margin-bottom: var(--space-3, 12px);
+  border-bottom: 1px solid rgba(26, 86, 219, 0.08);
+}
+
+.dropdownHeading {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: var(--tracking-wider, 0.08em);
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.dropdownViewAll {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--color-slate);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.dropdownViewAll:hover {
+  color: var(--color-primary);
+}
+
+.dropdownGridContinents {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-2, 8px);
+}
+
+.dropdownGridServices {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-2, 8px);
+}
+
+.dropdownItem {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: var(--space-3, 10px) var(--space-3, 12px);
+  border-radius: var(--radius-md, 10px);
+  text-decoration: none;
+  background: transparent;
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.dropdownItem:hover {
+  background-color: rgba(26, 86, 219, 0.06);
+  transform: translateX(2px);
+}
+
+.dropdownItemTitle {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-ink);
+  line-height: 1.25;
+}
+
+.dropdownItem:hover .dropdownItemTitle {
+  color: var(--color-primary);
+}
+
+.dropdownItemDesc {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: var(--color-slate);
+  line-height: 1.35;
+}
+
+/* ─── Mobile Accordion Groups ────────────────── */
+.mobileAccordionGroup {
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+}
+
+.mobileAccordionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4) 0;
+}
+
+.mobileAccordionTitleLink {
+  font-family: var(--font-sans);
+  font-size: var(--text-xl);
+  font-weight: 500;
+  color: var(--color-ink);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.mobileAccordionTitleLink:hover {
+  color: var(--color-primary);
+}
+
+.mobileAccordionToggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: rgba(26, 86, 219, 0.06);
+  border: 1px solid rgba(26, 86, 219, 0.12);
+  border-radius: var(--radius-md, 8px);
+  color: var(--color-primary);
+  cursor: pointer;
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.mobileAccordionToggle:hover {
+  background: rgba(26, 86, 219, 0.12);
+}
+
+.mobileCaret {
+  transition: transform var(--transition-fast);
+}
+
+.mobileCaretOpen {
+  transform: rotate(180deg);
+}
+
+.mobileSubList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 8px);
+  padding: var(--space-2) 0 var(--space-4) var(--space-3);
+  margin-bottom: var(--space-2);
+  border-left: 2px solid rgba(26, 86, 219, 0.2);
+}
+
+.mobileSubLink {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md, 8px);
+  text-decoration: none;
+  color: var(--color-charcoal);
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.mobileSubLink span:first-child {
+  font-size: var(--text-base);
+  font-weight: 500;
+  color: var(--color-ink);
+}
+
+.mobileSubDesc {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--color-slate);
+}
+
+.mobileSubLink:hover {
+  background: rgba(26, 86, 219, 0.06);
+}
+
+.mobileSubLink:hover span:first-child {
+  color: var(--color-primary);
+}
+
 /* ─── Responsive ─────────────────────────────── */
 @media (max-width: 900px) {
   .nav {
@@ -331,3 +584,4 @@
     display: flex;
   }
 }
+

@@ -25,7 +25,7 @@
 .partTitle {
   font-family: var(--font-sans);
   font-size: var(--text-xs);
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--color-slate);
@@ -99,7 +99,7 @@
 .legIndex {
   font-family: var(--font-sans);
   font-size: var(--text-xs);
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--color-primary);
@@ -163,7 +163,7 @@
   display: block;
   font-family: var(--font-sans);
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.04em;
   color: var(--color-slate);
   margin-bottom: 4px;
@@ -176,7 +176,7 @@
   background: transparent;
   font-family: var(--font-sans);
   font-size: var(--text-base);
-  font-weight: 600;
+  font-weight: 500;
   color: var(--color-ink);
   width: 100%;
   padding: 0;
@@ -239,7 +239,7 @@
   padding: 10px var(--space-8) 10px var(--space-4);
   font-family: var(--font-sans);
   font-size: var(--text-sm);
-  font-weight: 600;
+  font-weight: 500;
   color: var(--color-ink);
   background: var(--color-bg-primary);
   width: 100%;
@@ -297,7 +297,7 @@
 .counterLabel {
   font-family: var(--font-sans);
   font-size: var(--text-sm);
-  font-weight: 600;
+  font-weight: 500;
   color: var(--color-charcoal);
 }
 
@@ -343,7 +343,7 @@
 .counterValue {
   font-family: var(--font-sans);
   font-size: var(--text-base);
-  font-weight: 700;
+  font-weight: 500;
   color: var(--color-ink);
   min-width: 20px;
   text-align: center;
@@ -354,7 +354,7 @@
   align-self: flex-start;
   font-family: var(--font-sans);
   font-size: var(--text-sm);
-  font-weight: 600;
+  font-weight: 500;
   color: var(--color-primary);
   background: none;
   border: none;
@@ -417,7 +417,7 @@
   color: white;
   font-family: var(--font-sans);
   font-size: var(--text-sm);
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.03em;
   border: none;
   border-radius: 8px;
@@ -468,27 +468,121 @@
 
 /* ── Success ─────────────────────────────────────────────────── */
 .successState {
-  background: var(--color-bg-primary);
-  border: 1px solid #e0e5ed;
-  border-radius: 24px;
-  padding: var(--space-8) var(--space-10);
-  max-width: 500px;
-  margin: 0 auto;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 24px 20px;
+  max-width: 520px;
+  margin: 24px auto 0 auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@media (min-width: 640px) {
+  .successState {
+    padding: 32px 28px;
+    gap: 24px;
+  }
+}
+
+.successHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+}
+
+.successIconBadge {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #ecfdf5;
+  color: #10b981;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 6px;
+  border: 1px solid #a7f3d0;
+}
+
+.successEyebrow {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 11.5px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #10b981;
 }
 
 .successTitle {
-  font-family: var(--font-serif);
-  font-size: var(--text-2xl);
-  color: var(--color-ink);
-  margin-bottom: var(--space-6);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+  color: #0f172a;
+  margin: 0;
   letter-spacing: -0.01em;
+}
+
+.successSubtitle {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 13.5px;
+  color: #64748b;
+  line-height: 1.5;
+  margin: 0;
+  max-width: 42ch;
+  font-weight: 400;
+}
+
+.successRefBox {
+  margin-top: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+.successRefLabel {
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 400;
+}
+
+.successRefCode {
+  font-size: 13px;
+  font-weight: 500;
+  color: #1a56db;
+  letter-spacing: 0.03em;
+}
+
+/* Process Timeline Card */
+.successTimelineCard {
+  background: #f8fafc;
+  border: 1px solid #eef2f6;
+  border-radius: 12px;
+  padding: 18px 16px;
+}
+
+.timelineCardTitle {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #1a56db;
+  margin: 0 0 14px 0;
 }
 
 .stepsList {
   display: flex;
   flex-direction: column;
   list-style: none;
-  gap: 0;
+  gap: 12px;
   padding: 0;
   margin: 0;
 }
@@ -496,13 +590,9 @@
 .stepsItem {
   display: flex;
   align-items: flex-start;
-  gap: var(--space-6);
-  padding: var(--space-6) 0;
-  border-bottom: 1px solid #eef1f6;
-}
-
-.stepsItem:first-child {
-  padding-top: 0;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e2e8f0;
 }
 
 .stepsItem:last-child {
@@ -511,24 +601,94 @@
 }
 
 .stepsNum {
-  font-family: var(--font-serif);
-  font-size: 32px;
-  font-style: italic;
-  font-weight: 600;
-  color: #c9a84c;
-  line-height: 1;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #1a56db;
+  font-size: 12px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
-  width: 44px;
+  margin-top: 2px;
+}
+
+.stepTitle {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #0f172a;
+  margin-bottom: 2px;
 }
 
 .stepsItem p {
-  font-family: var(--font-sans);
-  font-size: var(--text-base);
-  color: var(--color-charcoal);
-  line-height: 1.6;
-  max-width: none;
-  padding-top: 4px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 12.5px;
+  color: #64748b;
+  line-height: 1.45;
   margin: 0;
+  font-weight: 400;
+}
+
+/* Actions */
+.successActionRow {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 4px;
+}
+
+@media (min-width: 480px) {
+  .successActionRow {
+    flex-direction: row;
+  }
+}
+
+.successPrimaryBtn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  background: #1a56db;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 8px;
+  border: 1px solid #1a56db;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  font-family: inherit;
+}
+
+.successPrimaryBtn:hover {
+  background: #1546b3;
+}
+
+.successSecondaryBtn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 16px;
+  background: #ffffff;
+  color: #0284c7;
+  border: 1px solid #0284c7;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 8px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  font-family: inherit;
+}
+
+.successSecondaryBtn:hover {
+  background: rgba(2, 132, 199, 0.06);
 }
 
 /* ── Custom Dropdown Options ───────────────────────────────────── */
