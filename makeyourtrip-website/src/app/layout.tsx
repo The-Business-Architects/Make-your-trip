@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Script from 'next/script'
 import { DM_Serif_Display, Manrope } from 'next/font/google'
 import '@/styles/globals.css'
 
@@ -167,15 +168,44 @@ export default function RootLayout({
     },
   }
 
+  const gtmId = process.env.NEXT_PUBLIC_GTM_ID || 'GTM-NWLQ8FH4'
+  const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
+
   return (
     <html lang="en">
       <head>
+        {gtmId && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtm.js?id=${gtmId}`}
+              strategy="afterInteractive"
+            />
+            <Script id="google-tag" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                ${gaMeasurementId ? `gtag('config', '${gaMeasurementId}', { page_path: window.location.pathname });` : ''}
+              `}
+            </Script>
+          </>
+        )}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
       </head>
       <body className={`${dmSerif.variable} ${manrope.variable}`}>
+        {gtmId && (
+          <noscript>
+            <iframe
+              src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
+              height="0"
+              width="0"
+              style={{ display: 'none', visibility: 'hidden' }}
+            />
+          </noscript>
+        )}
         <a href="#main-content" className="skip-link">Skip to main content</a>
         {children}
       </body>

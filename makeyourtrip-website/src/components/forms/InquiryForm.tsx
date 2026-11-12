@@ -6,6 +6,7 @@ import { useForm, useFieldArray } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import emailjs from '@emailjs/browser'
+import { trackEvent } from '@/lib/analytics'
 import styles from './InquiryForm.module.css'
 
 type JourneyType = 'one-way' | 'return' | 'multi-destination'
@@ -232,6 +233,14 @@ export default function InquiryForm() {
           console.warn('EmailJS notice:', emailErr)
         }
       }
+
+      trackEvent('generate_lead', {
+        event_category: 'Inquiry',
+        journey_type: data.journeyType,
+        travel_class: data.travelClass,
+        country: data.country,
+        travelers: data.adults + (data.children || 0) + (data.infants || 0),
+      })
 
       setStatus('success')
       reset()

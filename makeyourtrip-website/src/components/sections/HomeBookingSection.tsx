@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
+import { trackEvent } from '@/lib/analytics'
 import styles from './HomeBookingSection.module.css'
 
 function Counter({
@@ -88,6 +89,13 @@ export default function HomeBookingSection() {
     params.set('adults', adults.toString())
     if (children > 0) params.set('children', children.toString())
     if (infants > 0) params.set('infants', infants.toString())
+
+    trackEvent('initiate_trip_planning', {
+      origin: from.trim() || undefined,
+      destination: to.trim() || undefined,
+      travel_date: date || undefined,
+      travelers: totalTravelers,
+    })
 
     router.push(`/plan-your-trip?${params.toString()}`)
   }
