@@ -47,7 +47,7 @@ export default function Introduction() {
             </span>
           </div>
 
-          <Link href="/about" className={`btn btn--secondary ${styles.cta}`} id="intro-learn-more">
+          <Link href="/about/" className={`btn btn--secondary ${styles.cta}`} id="intro-learn-more">
             Learn More About Our Story
             <span className="btn-arrow" aria-hidden="true">→</span>
           </Link>

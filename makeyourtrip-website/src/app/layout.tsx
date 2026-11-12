@@ -168,28 +168,34 @@ export default function RootLayout({
     },
   }
 
+  const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-T1ZTPF270H'
   const gtmId = process.env.NEXT_PUBLIC_GTM_ID || 'GTM-NWLQ8FH4'
-  const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
 
   return (
     <html lang="en">
       <head>
-        {gtmId && (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtm.js?id=${gtmId}`}
-              strategy="afterInteractive"
-            />
-            <Script id="google-tag" strategy="afterInteractive">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                ${gaMeasurementId ? `gtag('config', '${gaMeasurementId}', { page_path: window.location.pathname });` : ''}
-              `}
-            </Script>
-          </>
+        {/* Google Analytics 4 (gtag.js) */}
+        {gaMeasurementId && (
+          <Script
+            src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}
+            strategy="afterInteractive"
+          />
         )}
+        {/* Google Tag Manager (gtm.js) */}
+        {gtmId && gtmId !== gaMeasurementId && (
+          <Script
+            src={`https://www.googletagmanager.com/gtm.js?id=${gtmId}`}
+            strategy="afterInteractive"
+          />
+        )}
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            ${gaMeasurementId ? `gtag('config', '${gaMeasurementId}', { page_path: window.location.pathname });` : ''}
+          `}
+        </Script>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}

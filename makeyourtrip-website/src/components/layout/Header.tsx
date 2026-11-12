@@ -20,32 +20,32 @@ interface DestinationDropdownItem {
 
 const serviceItems: ServiceDropdownItem[] = [
   {
-    href: '/services/custom-trip-planning',
+    href: '/services/custom-trip-planning/',
     label: 'Custom Trip Planning',
     desc: 'Bespoke daily route architecture & personal itinerary pacing',
   },
   {
-    href: '/services/smart-flight-booking',
+    href: '/services/smart-flight-booking/',
     label: 'Smart Flight Booking',
     desc: 'Strategic routing, connection safety & ticketing management',
   },
   {
-    href: '/services/visa-paperwork-help',
+    href: '/services/visa-paperwork-help/',
     label: 'Visa & Paperwork Help',
     desc: 'Step-by-step consular guidance & entry document verification',
   },
   {
-    href: '/services/local-travel-advice',
+    href: '/services/local-travel-advice/',
     label: 'Local Travel Advice',
     desc: 'Practical transit navigation, etiquette & neighborhood safety',
   },
   {
-    href: '/services/group-and-work-travel',
+    href: '/services/group-and-work-travel/',
     label: 'Group & Work Travel',
     desc: 'Multi-traveler coordination, corporate retreats & family journeys',
   },
   {
-    href: '/services/24-7-travel-support',
+    href: '/services/24-7-travel-support/',
     label: '24/7 Travel Support',
     desc: 'Round-the-clock live human helpline for disruptions & rebookings',
   },
@@ -53,22 +53,22 @@ const serviceItems: ServiceDropdownItem[] = [
 
 const destinationContinentItems: DestinationDropdownItem[] = [
   {
-    href: '/destinations?region=Europe',
+    href: '/destinations/?region=Europe',
     label: 'Europe',
     desc: 'Paris, Rome, Amalfi Coast, Swiss Alps, London & more',
   },
   {
-    href: '/destinations?region=Asia',
+    href: '/destinations/?region=Asia',
     label: 'Asia',
     desc: 'Tokyo, Kyoto, Osaka, Bali, Bangkok, Singapore & more',
   },
   {
-    href: '/destinations?region=Americas',
+    href: '/destinations/?region=Americas',
     label: 'Americas',
     desc: 'New York, Banff, Costa Rica, Rio de Janeiro & more',
   },
   {
-    href: '/destinations?region=Middle%20East',
+    href: '/destinations/?region=Middle%20East',
     label: 'Middle East',
     desc: 'Dubai, Abu Dhabi, Petra, Doha, Muscat & more',
   },
@@ -188,7 +188,7 @@ export default function Header() {
               onMouseLeave={handleDestinationsLeave}
             >
               <Link
-                href="/destinations"
+                href="/destinations/"
                 className={`${styles.navLink} ${styles.dropdownTrigger} ${
                   pathname.startsWith('/destinations') ? styles.navLinkActive : ''
                 }`}
@@ -216,7 +216,7 @@ export default function Header() {
                 <div className={`${styles.dropdownMenu} ${styles.dropdownMenuDestinations}`}>
                   <div className={styles.dropdownHeader}>
                     <span className={styles.dropdownHeading}>Explore Continents</span>
-                    <Link href="/destinations" className={styles.dropdownViewAll}>
+                    <Link href="/destinations/" className={styles.dropdownViewAll}>
                       All 36+ Destinations →
                     </Link>
                   </div>
@@ -243,7 +243,7 @@ export default function Header() {
               onMouseLeave={handleServicesLeave}
             >
               <Link
-                href="/services"
+                href="/services/"
                 className={`${styles.navLink} ${styles.dropdownTrigger} ${
                   pathname.startsWith('/services') ? styles.navLinkActive : ''
                 }`}
@@ -271,7 +271,7 @@ export default function Header() {
                 <div className={`${styles.dropdownMenu} ${styles.dropdownMenuServices}`}>
                   <div className={styles.dropdownHeader}>
                     <span className={styles.dropdownHeading}>Our Travel Services</span>
-                    <Link href="/services" className={styles.dropdownViewAll}>
+                    <Link href="/services/" className={styles.dropdownViewAll}>
                       Services Hub →
                     </Link>
                   </div>
@@ -292,7 +292,7 @@ export default function Header() {
             </div>
 
             <Link
-              href="/about"
+              href="/about/"
               className={styles.navLink}
               aria-current={pathname === '/about' ? 'page' : undefined}
             >
@@ -300,7 +300,7 @@ export default function Header() {
             </Link>
 
             <Link
-              href="/contact"
+              href="/contact/"
               className={styles.navLink}
               aria-current={pathname === '/contact' ? 'page' : undefined}
             >
@@ -309,7 +309,7 @@ export default function Header() {
           </nav>
 
           {/* Desktop CTA */}
-          <Link href="/plan-your-trip" className={styles.navCta} id="header-cta">
+          <Link href="/plan-your-trip/" className={styles.navCta} id="header-cta">
             Plan My Trip
             <span className="btn-arrow" aria-hidden="true">→</span>
           </Link>
@@ -353,7 +353,7 @@ export default function Header() {
           <div className={styles.mobileAccordionGroup}>
             <div className={styles.mobileAccordionHeader}>
               <Link
-                href="/destinations"
+                href="/destinations/"
                 className={styles.mobileAccordionTitleLink}
                 onClick={() => setMenuOpen(false)}
               >
@@ -403,7 +403,7 @@ export default function Header() {
           <div className={styles.mobileAccordionGroup}>
             <div className={styles.mobileAccordionHeader}>
               <Link
-                href="/services"
+                href="/services/"
                 className={styles.mobileAccordionTitleLink}
                 onClick={() => setMenuOpen(false)}
               >
@@ -450,7 +450,7 @@ export default function Header() {
           </div>
 
           <Link
-            href="/about"
+            href="/about/"
             className={styles.mobileNavLink}
             aria-current={pathname === '/about' ? 'page' : undefined}
             onClick={() => setMenuOpen(false)}
@@ -460,7 +460,7 @@ export default function Header() {
           </Link>
 
           <Link
-            href="/contact"
+            href="/contact/"
             className={styles.mobileNavLink}
             aria-current={pathname === '/contact' ? 'page' : undefined}
             onClick={() => setMenuOpen(false)}
@@ -471,7 +471,7 @@ export default function Header() {
         </nav>
 
         <Link
-          href="/plan-your-trip"
+          href="/plan-your-trip/"
           className={styles.mobileCta}
           id="mobile-plan-cta"
           onClick={() => setMenuOpen(false)}

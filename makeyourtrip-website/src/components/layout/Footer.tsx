@@ -3,21 +3,21 @@ import Image from 'next/image'
 import styles from './Footer.module.css'
 
 const navLinks = [
-  { href: '/',             label: 'Home' },
-  { href: '/destinations', label: 'Destinations' },
-  { href: '/services',     label: 'Travel Services' },
-  { href: '/about',        label: 'About Us' },
-  { href: '/contact',      label: 'Contact' },
-  { href: '/plan-your-trip', label: 'Plan My Trip' },
+  { href: '/',               label: 'Home' },
+  { href: '/destinations/',  label: 'Destinations' },
+  { href: '/services/',      label: 'Travel Services' },
+  { href: '/about/',         label: 'About Us' },
+  { href: '/contact/',       label: 'Contact' },
+  { href: '/plan-your-trip/', label: 'Plan My Trip' },
 ]
 
 const serviceLinks = [
-  { href: '/services/custom-trip-planning', label: 'Custom Trip Planning' },
-  { href: '/services/smart-flight-booking', label: 'Smart Flight Booking' },
-  { href: '/services/visa-paperwork-help', label: 'Visa & Paperwork Help' },
-  { href: '/services/local-travel-advice', label: 'Local Travel Advice' },
-  { href: '/services/group-and-work-travel', label: 'Group & Work Travel' },
-  { href: '/services/24-7-travel-support', label: '24/7 Travel Support' },
+  { href: '/services/custom-trip-planning/', label: 'Custom Trip Planning' },
+  { href: '/services/smart-flight-booking/', label: 'Smart Flight Booking' },
+  { href: '/services/visa-paperwork-help/', label: 'Visa & Paperwork Help' },
+  { href: '/services/local-travel-advice/', label: 'Local Travel Advice' },
+  { href: '/services/group-and-work-travel/', label: 'Group & Work Travel' },
+  { href: '/services/24-7-travel-support/', label: '24/7 Travel Support' },
 ]
 
 interface FooterProps {
@@ -46,11 +46,11 @@ export default function Footer({ hideCta = false }: FooterProps) {
               </div>
 
               <div className={styles.ctaActions}>
-                <Link href="/plan-your-trip" className={styles.planBtn} id="footer-plan-cta">
+                <Link href="/plan-your-trip/" className={styles.planBtn} id="footer-plan-cta">
                   <span>Plan My Trip</span>
                   <span className={styles.btnArrow} aria-hidden="true">→</span>
                 </Link>
-                <Link href="/contact" className={styles.contactBtn} id="footer-contact-cta">
+                <Link href="/contact/" className={styles.contactBtn} id="footer-contact-cta">
                   Contact Us
                 </Link>
               </div>
@@ -193,9 +193,9 @@ export default function Footer({ hideCta = false }: FooterProps) {
               © {year} MakeYourTrip Inc. All rights reserved.
             </p>
             <nav className={styles.legalLinks} aria-label="Legal links">
-              <Link href="/privacy-policy" className={styles.legalLink}>Privacy Policy</Link>
-              <Link href="/terms"          className={styles.legalLink}>Terms & Conditions</Link>
-              <Link href="/contact"        className={styles.legalLink}>Contact</Link>
+              <Link href="/privacy-policy/" className={styles.legalLink}>Privacy Policy</Link>
+              <Link href="/terms/"          className={styles.legalLink}>Terms & Conditions</Link>
+              <Link href="/contact/"        className={styles.legalLink}>Contact</Link>
             </nav>
           </div>
         </div>

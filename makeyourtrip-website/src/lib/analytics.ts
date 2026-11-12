@@ -1,20 +1,14 @@
-// Google Tag (gtm.js) & Google Analytics 4 (GA4) Utility
+// Google Analytics 4 (GA4) & Google Tag Utility
 
+export const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-T1ZTPF270H'
 export const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || 'GTM-NWLQ8FH4'
-export const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/pages
 export const pageview = (url: string) => {
   if (typeof window !== 'undefined' && typeof (window as any).gtag === 'function') {
-    if (GA_MEASUREMENT_ID) {
-      ;(window as any).gtag('config', GA_MEASUREMENT_ID, {
-        page_path: url,
-      })
-    } else {
-      ;(window as any).gtag('event', 'page_view', {
-        page_path: url,
-      })
-    }
+    ;(window as any).gtag('config', GA_MEASUREMENT_ID, {
+      page_path: url,
+    })
   }
 }
 

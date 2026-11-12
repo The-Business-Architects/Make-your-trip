@@ -245,7 +245,7 @@ export default function Hero() {
           </div>
 
           <div className={styles.heroCtas}>
-            <Link href="/plan-your-trip" className={styles.planTripBtn} id="hero-plan-trip">
+            <Link href="/plan-your-trip/" className={styles.planTripBtn} id="hero-plan-trip">
               <span>Plan Your Trip</span>
               <svg
                 className={styles.planTripArrow}

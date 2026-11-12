@@ -42,7 +42,7 @@ export default function EditorialCTA() {
             International travel starts with a single step. Let us help you take it.
           </p>
           <Link
-            href="/plan-your-trip"
+            href="/plan-your-trip/"
             className={`btn btn--ghost btn--lg ${styles.cta}`}
             id="editorial-cta-btn"
           >

@@ -91,7 +91,7 @@ export default function ServiceFaqAccordion({
           <p className={styles.footerHelpText}>
             Ready to discuss your upcoming international journey with our specialists?
           </p>
-          <Link href="/plan-your-trip" className="btn btn--primary">
+          <Link href="/plan-your-trip/" className="btn btn--primary">
             Request a Free Route Proposal →
           </Link>
         </div>

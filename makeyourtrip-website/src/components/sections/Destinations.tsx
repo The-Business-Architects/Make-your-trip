@@ -279,7 +279,7 @@ export default function Destinations() {
                   <span className="btn-arrow" aria-hidden="true">→</span>
                 </Link>
                 <Link
-                  href="/plan-your-trip"
+                  href="/plan-your-trip/"
                   className={`btn btn--secondary ${styles.actionBtn}`}
                 >
                   Plan
@@ -291,7 +291,7 @@ export default function Destinations() {
 
         {/* View All Link */}
         <div className={`text-center ${styles.viewAll}`}>
-          <Link href="/destinations" className="btn btn--secondary" id="dest-view-all">
+          <Link href="/destinations/" className="btn btn--secondary" id="dest-view-all">
             Explore All Destinations
             <span className="btn-arrow" aria-hidden="true">→</span>
           </Link>

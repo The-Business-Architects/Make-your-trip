@@ -76,7 +76,7 @@ export default function HomeFaq() {
           <p className={styles.footerHelpText}>
             Have a custom travel route or specific question in mind?
           </p>
-          <Link href="/plan-your-trip" className="btn btn--primary">
+          <Link href="/plan-your-trip/" className="btn btn--primary">
             Plan Your Journey With Us →
           </Link>
         </div>
