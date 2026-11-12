@@ -221,7 +221,7 @@ export default function ContactPage() {
           title="Connect with a Dedicated Travel Specialist"
           subtitle="Whether you have an upcoming trip to plan or need advice on international flight routes and visa paperwork, our team is directly accessible."
           ctaText="Submit Online Inquiry"
-          ctaHref="/plan-your-trip"
+          ctaHref="/plan-your-trip/"
           secondaryCtaText="Call Now / WhatsApp"
           secondaryCtaHref="tel:+919528203267"
         />
