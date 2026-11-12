@@ -211,9 +211,9 @@ export default function AboutPage() {
           title="A Managed Travel Agency Built Around Real People"
           subtitle="We founded MakeYourTrip Inc. to take the cognitive burnout out of international travel. Bespoke route planning, smart flight logistics, and zero robotic call centers."
           ctaText="Plan Your Journey"
-          ctaHref="/plan-your-trip"
+          ctaHref="/plan-your-trip/"
           secondaryCtaText="Explore Services"
-          secondaryCtaHref="/services"
+          secondaryCtaHref="/services/"
         />
 
         {/* Story Section */}
@@ -236,7 +236,7 @@ export default function AboutPage() {
                   <strong>MakeYourTrip Inc.</strong> bridges that gap. We combine deep route intelligence with personal human care. Whether you are navigating complex multi-country rail connections across Europe or coordinating international paperwork, you have an experienced specialist managing the details behind the scenes.
                 </p>
                 <div style={{ marginTop: 'var(--space-4)' }}>
-                  <Link href="/plan-your-trip" className="btn btn--primary" id="about-cta">
+                  <Link href="/plan-your-trip/" className="btn btn--primary" id="about-cta">
                     Start Your Trip Consultation →
                   </Link>
                 </div>
